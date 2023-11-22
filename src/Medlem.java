@@ -6,7 +6,7 @@ public class Medlem {
     ArrayList<Medlem> medlemmer = new ArrayList<>();
     String navn;
     Date fødselsdag;
-    //passiv/motion/konkurrence
+    // passiv/motion/konkurrence
     String type;
     ArrayList<String> discipliner;
 
@@ -48,4 +48,5 @@ public class Medlem {
     static void hold(){
 
     }
+
 }
