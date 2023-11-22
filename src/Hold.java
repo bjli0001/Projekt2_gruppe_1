@@ -22,7 +22,7 @@ public class Hold {
 
     static void opretHold() {
 
-        new Hold("Senior K", "konkurrence", "senior");
+        new Hold("SeniorK", "konkurrence", "senior");
         new Hold("Junior K", "konkurrence", "junior");
         new Hold("Hyggeholdet 2", "motion", "senior");
         new Hold("Hyggeholdet 1", "motion", "junior");
