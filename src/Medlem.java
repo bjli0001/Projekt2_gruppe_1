@@ -9,6 +9,7 @@ import java.util.Scanner;
 
 public class Medlem {
     static ArrayList<Medlem> medlemmer = new ArrayList<>();
+    static ArrayList<String> navne = new ArrayList<>();
     String navn;
     Date fødselsdag;
     // passiv/motion/konkurrence
@@ -27,6 +28,7 @@ public class Medlem {
         this.fødselsdag=fødselsdag;
         this.type=type;
         medlemmer.add(this);
+        navne.add(navn);
     }
 
 
@@ -84,6 +86,10 @@ public class Medlem {
 
     // Rediger medlems oplysninger
     static void rediger(){
+        System.out.println("Vælg en svømmer");
+        String svømmer = input.nextLine();
+        System.out.println(medlemmer.get(navne.indexOf(svømmer)));
+
 
     }
 
