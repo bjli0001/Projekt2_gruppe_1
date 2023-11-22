@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class Medlem {
     ArrayList<Medlem> medlemmer = new ArrayList<>();
@@ -12,6 +14,8 @@ public class Medlem {
     ArrayList<> resultater;
 
 
+
+
     Medlem(String navn, Date fødselsdag, String type){
         this.navn=navn;
         this.fødselsdag=fødselsdag;
@@ -20,6 +24,8 @@ public class Medlem {
     }
 
 
+
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
     // Opret et medlem
     static void opret(){
 
