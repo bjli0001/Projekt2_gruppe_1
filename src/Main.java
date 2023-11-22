@@ -1,6 +1,5 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hej Delfin");
 
 
         Menu.menu(new String[]{"Opret medlem","Rediger medlem","Se resultater","Svømmehold"});
