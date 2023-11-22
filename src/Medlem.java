@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,8 +35,21 @@ public class Medlem {
     static Scanner input = new Scanner(System.in);
     static boolean cont;
 
-    // Opret et medlem
-    static void opret() throws ParseException {
+    static void indlæs() {
+        try (BufferedReader br = new BufferedReader(new FileReader("medlemmer.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+
+                new Medlem(values[0], sdf.parse(values[1]), values[2]);
+            }
+        } catch (IOException | ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+        // Opret et medlem
+    static void opret() throws ParseException, IOException {
         cont = true;
         System.out.println("Indtast navn");
         String nameIn = input.nextLine();
@@ -63,7 +79,7 @@ public class Medlem {
         }
 
         new Medlem(nameIn, dateIn, typeIn);
-        System.out.println(medlemmer);
+        ToFile.saveList(medlemmer);
     }
 
     // Rediger medlems oplysninger
@@ -83,6 +99,6 @@ public class Medlem {
 
     @Override
     public String toString() {
-        return navn+fødselsdag;
+        return navn+","+sdf.format(fødselsdag.getTime())+","+type;
     }
 }

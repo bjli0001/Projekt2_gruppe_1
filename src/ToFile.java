@@ -5,13 +5,13 @@ import java.util.ArrayList;
 
 public class ToFile {
 
-    public static void saveList(ArrayList<String[]> dataLines,String s) throws IOException {
-        FileWriter fil = new FileWriter(s);
+    public static void saveList(ArrayList<Medlem> medlemmer) throws IOException {
+        FileWriter fil = new FileWriter("medlemmer.txt");
         PrintWriter ud = new PrintWriter(fil);
 
-        for (String[] sa: dataLines){
+        for (Medlem m: medlemmer){
 
-            ud.println(String.join(",",sa));
+            ud.println(m.toString());
         }
         fil.close();
     }
