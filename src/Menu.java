@@ -1,8 +1,6 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
-class Hej {
-s
-}
+
 public class Menu {
     static int op;
     static Scanner input = new Scanner(System.in);

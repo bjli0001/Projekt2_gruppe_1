@@ -2,6 +2,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -14,6 +17,7 @@ public class Medlem {
     Date fødselsdag;
     // passiv/motion/konkurrence
     String type;
+    String alder;
     ArrayList<String> discipliner;
 
     // Resultat class eller String[]?
@@ -27,6 +31,9 @@ public class Medlem {
         this.navn=navn;
         this.fødselsdag=fødselsdag;
         this.type=type;
+        if (Period.between(fødselsdag.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears()<18){
+            alder="Junior";
+        } else alder="Senior";
         medlemmer.add(this);
         navne.add(navn);
     }
@@ -60,6 +67,7 @@ public class Medlem {
         while (cont) {
             System.out.println("Indtast fødselsdag (åååå/MM/dd)");
             String dateStringIn = input.nextLine();
+
             try {
                 dateIn = sdf.parse(dateStringIn);
                 cont = false;
@@ -88,9 +96,13 @@ public class Medlem {
     static void rediger(){
         System.out.println("Vælg en svømmer");
         String svømmer = input.nextLine();
-        System.out.println(medlemmer.get(navne.indexOf(svømmer)));
+        int navneIndex=navne.indexOf(svømmer);
+        System.out.println(medlemmer.get(navneIndex));
+        Menu.menu(new String[]{"Adminstrer medlemskab","Tilmeld svømmehold","Frameld Svømmehold","Tilføj ny bedste tid"});
+        switch (Menu.op){
+            case 2 -> Hold.tilmeldSvømmehold(navneIndex);
 
-
+        }
     }
 
     // Se medlems resultater
