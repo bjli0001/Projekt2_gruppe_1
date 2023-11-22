@@ -24,7 +24,7 @@ public class Medlem {
     }
 
 
-
+    //Dato format
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
     // Opret et medlem
     static void opret(){
