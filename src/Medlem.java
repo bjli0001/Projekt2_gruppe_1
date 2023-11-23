@@ -19,6 +19,7 @@ public class Medlem {
     String type;
     String alder;
     String hold;
+
     ArrayList<String> discipliner;
 
     // Resultat class eller String[]?
@@ -28,11 +29,11 @@ public class Medlem {
 
 
 
-    Medlem(String navn, Date fødselsdag, String type,String hold){
+    Medlem(String navn, Date fødselsdag, String type){
         this.navn=navn;
         this.fødselsdag=fødselsdag;
         this.type=type;
-        this.hold=hold;
+
         if (Period.between(fødselsdag.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears()<18){
             alder="Junior";
         } else alder="Senior";
@@ -52,7 +53,7 @@ public class Medlem {
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
 
-                new Medlem(values[0], sdf.parse(values[1]), values[2],values[3]);
+                new Medlem(values[0], sdf.parse(values[1]), values[2]);
             }
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
@@ -89,12 +90,13 @@ public class Medlem {
             case 2 -> typeIn = "Motion";
             case 3 -> typeIn = "Passiv";
         }
-        String holdIn=null;
-        System.out.println("Mulige hold");
-        Menu.op=Menu.inInt(Hold.holdliste.size());
 
 
-        new Medlem(nameIn, dateIn, typeIn,holdIn);
+
+        new Medlem(nameIn, dateIn, typeIn);
+
+        Hold.tilmeldSvømmehold(medlemmer.size()-1);
+
         ToFile.saveList(medlemmer);
     }
 
@@ -123,6 +125,6 @@ public class Medlem {
 
     @Override
     public String toString() {
-        return navn+","+sdf.format(fødselsdag.getTime())+","+type;
+        return navn+","+sdf.format(fødselsdag.getTime())+","+type+","+hold;
     }
 }

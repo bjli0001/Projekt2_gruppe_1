@@ -24,8 +24,8 @@ public class Hold {
 
         new Hold("Senior K", "Konkurrence", "Senior");
         new Hold("Junior K", "Konkurrence", "Junior");
-        new Hold("Hyggeholdet 2", "Motion", "Senior");
-        new Hold("Hyggeholdet 1", "Motion", "Junior");
+        new Hold("Hyggeholdet", "Motion", "Senior");
+        new Hold("Hyggeholdet", "Motion", "Junior");
 
 
 
@@ -52,6 +52,7 @@ public class Hold {
         holdliste.get(holdIndex.get(Menu.op-1)).svoemmer.add(Medlem.medlemmer.get(navneIndex));
         System.out.println(holdliste.get(holdIndex.get(Menu.op-1)).svoemmer);
 
+        Medlem.medlemmer.get(navneIndex).hold=holdliste.get(holdIndex.get(Menu.op-1)).holdnavn;
     }
 
     @Override
