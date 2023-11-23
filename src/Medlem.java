@@ -5,10 +5,8 @@ import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.*;
 import java.text.SimpleDateFormat;
-import java.util.Scanner;
 
 public class Medlem {
     static ArrayList<Medlem> medlemmer = new ArrayList<>();
@@ -19,7 +17,7 @@ public class Medlem {
     String type;
     String alder;
     String hold;
-    ArrayList<String> discipliner = new ArrayList<>();
+    List<String> discipliner = new ArrayList<>();
 
     // Resultat class eller String[]?
     //ArrayList<> resultater;
@@ -28,11 +26,11 @@ public class Medlem {
 
 
 
-    Medlem(String navn, Date fødselsdag, String type, String disciplin, String hold){
+    Medlem(String navn, Date fødselsdag, String type, List<String> disciplin, String hold){
         this.navn=navn;
         this.fødselsdag=fødselsdag;
         this.type=type;
-        discipliner.add(disciplin);
+        this.discipliner=disciplin;
         this.hold=hold;
         if (Period.between(fødselsdag.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears()<18){
             alder="Junior";
@@ -52,9 +50,8 @@ public class Medlem {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
-                String[] disci = values[3].split(";");
-
-                new Medlem(values[0], sdf.parse(values[1]), values[2], values[3], values[4]);
+                List<String> disci = Arrays.asList(values[3].split(","));
+                new Medlem(values[0], sdf.parse(values[1]), values[2], disci, values[4]);
 
                 if (!values[4].equals("0")){
                     Hold.holdliste.get(Hold.holdNavne.indexOf(values[4])).svoemmer.add(medlemmer.get(medlemmer.size()-1));
@@ -67,7 +64,7 @@ public class Medlem {
 
         // Opret et medlem
     static void opret() throws ParseException, IOException {
-        String stilart = "";
+        List<String> stilart = new ArrayList<>();
         String stilartInput = "";
         cont = true;
         System.out.println("Indtast navn");
@@ -108,49 +105,22 @@ public class Medlem {
 
                 Menu.menu(new String[]{"Fri svømning", "Rygcrawl", "Butterfly", "Brystsvømning", "Færdiggør, gem og luk"});
 
-                stilartInput = input.nextLine();
 
                 switch (Menu.op) {
 
 
-                    case 1 -> stilartInput = "Fri svømning";
-                    case 2 -> stilartInput = "Rygcrawl";
-                    case 3 -> stilartInput = "Butterfly";
-                    case 4 -> stilartInput = "Brystsvømning";
-                    case 5 -> stilartInput = "Færdiggør, gem og luk";
+                    case 1 -> stilart.add("Fri svømning");
+                    case 2 -> stilart.add("Rygcrawl");
+                    case 3 -> stilart.add("Butterfly");
+                    case 4 -> stilart.add("Brystsvømning");
+                    case 5 -> nyStilart = false;
 
                 }
 
-                if (stilartInput.equals("Fri svømning")) {
-
-                    stilart = "Fri svømning";
-                }
-
-                if (stilartInput.equals("Rygcrawl")) {
-
-                    stilart = "Rygcrawl";
-                }
-
-                if (stilartInput.equals("Butterfly")) {
-
-                    stilart = "Butterfly";
-                }
-
-                if (stilartInput.equals("Brystsvømning")) {
-
-                    stilart = "Brystsvømning";
-                }
-
-
-                if (stilartInput.equals("Færdiggør, gem og luk")) {
-
-                    nyStilart = false;
-
-                }
 
             }
         } else
-            stilart = "Ingen tilknyttet disciplin";
+            stilart.add("Ingen tilknyttet disciplin");
 
 
 
