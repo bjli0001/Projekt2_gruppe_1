@@ -19,7 +19,6 @@ public class Medlem {
     String type;
     String alder;
     String hold;
-    String disciplin;
     ArrayList<String> discipliner;
 
     // Resultat class eller String[]?
@@ -33,7 +32,7 @@ public class Medlem {
         this.navn=navn;
         this.fødselsdag=fødselsdag;
         this.type=type;
-        this.disciplin = disciplin;
+        this.discipliner.add(disciplin);
         this.hold=hold;
         if (Period.between(fødselsdag.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears()<18){
             alder="Junior";
@@ -87,6 +86,7 @@ public class Medlem {
         System.out.println("Medlemstype");
         Menu.menu(new String[] {"Konkurrence", "Motion", "Passiv"});
         String typeIn = null;
+        boolean nyStilart = true;
         switch (Menu.op){
             case 1 -> typeIn = "Konkurrence";
             case 2 -> typeIn = "Motion";
@@ -98,18 +98,28 @@ public class Medlem {
 
             System.out.println("Vælg en stilart");
 
-            Menu.menu(new String[]{"Fri svømning", "Rygcrawl", "Butterfly", "Brystsvømning"});
+            while(nyStilart) {
 
-            stilart = input.nextLine();
+                Menu.menu(new String[]{"Fri svømning", "Rygcrawl", "Butterfly", "Brystsvømning"});
 
-            switch (Menu.op) {
+                stilart = input.nextLine();
+
+                switch (Menu.op) {
 
 
+                    case 1 -> stilart = "Fri svømning";
+                    case 2 -> stilart = "Rygcrawl";
+                    case 3 -> stilart = "Butterfly";
+                    case 4 -> stilart = "Brystsvømning";
+                    case 5 -> stilart = "Færdiggør, gem og luk";
 
-                case 1 -> stilart = "Fri svømning";
-                case 2 -> stilart = "Rygcrawl";
-                case 3 -> stilart = "Butterfly";
-                case 4 -> stilart = "Brystsvømning";
+                }
+
+                if (stilart.equals("Færdiggør, gem og luk")) {
+
+                    nyStilart = false;
+
+                }
 
             }
         } else
@@ -149,6 +159,6 @@ public class Medlem {
 
     @Override
     public String toString() {
-        return navn+","+sdf.format(fødselsdag.getTime())+","+type+","+disciplin+","+hold;
+        return navn+","+sdf.format(fødselsdag.getTime())+","+type+","+discipliner+","+hold;
     }
 }
