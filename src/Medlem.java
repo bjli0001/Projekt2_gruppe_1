@@ -19,7 +19,7 @@ public class Medlem {
     String type;
     String alder;
     String hold;
-    ArrayList<String> discipliner;
+    ArrayList<String> discipliner = new ArrayList<>();
 
     // Resultat class eller String[]?
     //ArrayList<> resultater;
@@ -66,6 +66,7 @@ public class Medlem {
         // Opret et medlem
     static void opret() throws ParseException, IOException {
         String stilart = "";
+        String stilartInput = "";
         cont = true;
         System.out.println("Indtast navn");
         String nameIn = input.nextLine();
@@ -103,22 +104,43 @@ public class Medlem {
 
             while(nyStilart) {
 
-                Menu.menu(new String[]{"Fri svømning", "Rygcrawl", "Butterfly", "Brystsvømning"});
+                Menu.menu(new String[]{"Fri svømning", "Rygcrawl", "Butterfly", "Brystsvømning", "Færdiggør, gem og luk"});
 
-                stilart = input.nextLine();
+                stilartInput = input.nextLine();
 
                 switch (Menu.op) {
 
 
-                    case 1 -> stilart = "Fri svømning";
-                    case 2 -> stilart = "Rygcrawl";
-                    case 3 -> stilart = "Butterfly";
-                    case 4 -> stilart = "Brystsvømning";
-                    case 5 -> stilart = "Færdiggør, gem og luk";
+                    case 1 -> stilartInput = "Fri svømning";
+                    case 2 -> stilartInput = "Rygcrawl";
+                    case 3 -> stilartInput = "Butterfly";
+                    case 4 -> stilartInput = "Brystsvømning";
+                    case 5 -> stilartInput = "Færdiggør, gem og luk";
 
                 }
 
-                if (stilart.equals("Færdiggør, gem og luk")) {
+                if (stilartInput.equals("Fri svømning")) {
+
+                    stilart = "Fri svømning";
+                }
+
+                if (stilartInput.equals("Rygcrawl")) {
+
+                    stilart = "Rygcrawl";
+                }
+
+                if (stilartInput.equals("Butterfly")) {
+
+                    stilart = "Butterfly";
+                }
+
+                if (stilartInput.equals("Brystsvømning")) {
+
+                    stilart = "Brystsvømning";
+                }
+
+
+                if (stilartInput.equals("Færdiggør, gem og luk")) {
 
                     nyStilart = false;
 
@@ -126,7 +148,7 @@ public class Medlem {
 
             }
         } else
-            stilart = "none";
+            stilart = "Ingen tilknyttet disciplin";
 
 
 
