@@ -100,7 +100,7 @@ public class Medlem {
 
         if (typeIn.equals("Konkurrence")) {
 
-            System.out.println("Vælg en stilart");
+            System.out.println("Vælg en stilart!");
 
             while(nyStilart) {
 
