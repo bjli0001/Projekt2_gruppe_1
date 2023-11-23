@@ -1,2 +1,3 @@
-Henry Goolean,2020/11/23,Konkurrence,Brystsvømning,Junior K
-Lars,1989/09/11,Konkurrence,Brystsvømning,Senior K
+Henry Goolean,2020/11/23,Konkurrence,[Brystsvømning],Junior K
+Lars,1989/09/11,Konkurrence,[Brystsvømning],Senior K
+Ymer,2047/08/01,Motion,[none],Hyggeholdet J

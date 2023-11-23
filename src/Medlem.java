@@ -19,7 +19,7 @@ public class Medlem {
     String type;
     String alder;
     String hold;
-    ArrayList<String> discipliner;
+    ArrayList<String> discipliner = new ArrayList<>();
 
     // Resultat class eller String[]?
     //ArrayList<> resultater;
@@ -32,7 +32,7 @@ public class Medlem {
         this.navn=navn;
         this.fødselsdag=fødselsdag;
         this.type=type;
-        this.discipliner.add(disciplin);
+        discipliner.add(disciplin);
         this.hold=hold;
         if (Period.between(fødselsdag.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears()<18){
             alder="Junior";
@@ -55,7 +55,7 @@ public class Medlem {
 
                 new Medlem(values[0], sdf.parse(values[1]), values[2], values[3], values[4]);
                 if (!values[4].equals("0")){
-                    Hold.holdliste.indexOf(values[4]);
+                    Hold.holdliste.get(Hold.holdNavne.indexOf(values[4])).svoemmer.add(medlemmer.get(medlemmer.size()-1));
                 }
             }
         } catch (IOException | ParseException e) {
