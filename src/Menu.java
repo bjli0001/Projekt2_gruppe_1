@@ -5,9 +5,6 @@ public class Menu {
     static int op;
     static Scanner input = new Scanner(System.in);
 
-    public static void main(String[] args) {
-
-    }
     static void menu(String[] list){
         for(int i=0; i<list.length; i++){
 

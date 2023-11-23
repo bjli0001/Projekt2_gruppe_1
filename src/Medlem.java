@@ -18,6 +18,7 @@ public class Medlem {
     // passiv/motion/konkurrence
     String type;
     String alder;
+    String hold;
     ArrayList<String> discipliner;
 
     // Resultat class eller String[]?
@@ -27,10 +28,11 @@ public class Medlem {
 
 
 
-    Medlem(String navn, Date fødselsdag, String type){
+    Medlem(String navn, Date fødselsdag, String type,String hold){
         this.navn=navn;
         this.fødselsdag=fødselsdag;
         this.type=type;
+        this.hold=hold;
         if (Period.between(fødselsdag.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears()<18){
             alder="Junior";
         } else alder="Senior";
@@ -50,7 +52,7 @@ public class Medlem {
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
 
-                new Medlem(values[0], sdf.parse(values[1]), values[2]);
+                new Medlem(values[0], sdf.parse(values[1]), values[2],values[3]);
             }
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
@@ -87,8 +89,12 @@ public class Medlem {
             case 2 -> typeIn = "Motion";
             case 3 -> typeIn = "Passiv";
         }
+        String holdIn=null;
+        System.out.println("Mulige hold");
+        Menu.op=Menu.inInt(Hold.holdliste.size());
 
-        new Medlem(nameIn, dateIn, typeIn);
+
+        new Medlem(nameIn, dateIn, typeIn,holdIn);
         ToFile.saveList(medlemmer);
     }
 
