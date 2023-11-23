@@ -52,8 +52,10 @@ public class Medlem {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
+                String[] disci = values[3].split(";");
 
                 new Medlem(values[0], sdf.parse(values[1]), values[2], values[3], values[4]);
+
                 if (!values[4].equals("0")){
                     Hold.holdliste.get(Hold.holdNavne.indexOf(values[4])).svoemmer.add(medlemmer.get(medlemmer.size()-1));
                 }
@@ -184,6 +186,7 @@ public class Medlem {
 
     @Override
     public String toString() {
-        return navn+","+sdf.format(fødselsdag.getTime())+","+type+","+discipliner+","+hold;
+        String disci = String.join(";",discipliner);
+        return navn+","+sdf.format(fødselsdag.getTime())+","+type+","+disci+","+hold;
     }
 }
