@@ -104,9 +104,7 @@ public class Medlem {
 
             switch (Menu.op) {
 
-        new Medlem(nameIn, dateIn, typeIn);
 
-        Hold.tilmeldSvømmehold(medlemmer.size()-1);
 
                 case 1 -> stilart = "Fri svømning";
                 case 2 -> stilart = "Rygcrawl";
@@ -117,7 +115,12 @@ public class Medlem {
         } else
             stilart = "none";
 
-        new Medlem(nameIn, dateIn, typeIn,holdIn, stilart);
+
+        String holdIn="0";
+        new Medlem(nameIn, dateIn, typeIn, stilart,holdIn);
+
+
+        Hold.tilmeldSvømmehold(medlemmer.size()-1);
         ToFile.saveList(medlemmer);
     }
 
