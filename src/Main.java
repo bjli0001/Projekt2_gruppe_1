@@ -4,8 +4,10 @@ import java.text.ParseException;
 public class Main {
     public static void main(String[] args) throws ParseException, IOException {
 
-        Medlem.indlæs();
+
         Hold.opretHold();
+        Medlem.indlæs();
+
 
         while (true) {
             Menu.menu(new String[]{"Opret medlem", "Rediger medlem", "Se resultater", "Svømmehold"});

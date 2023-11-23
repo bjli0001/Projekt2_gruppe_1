@@ -3,8 +3,7 @@ import java.util.ArrayList;
 public class Hold {
 
     static ArrayList<Hold> holdliste = new ArrayList<>();
-
-
+    static ArrayList<String> holdNavne = new ArrayList<>();
     String holdnavn;
     String type;
     String alder;
@@ -15,6 +14,7 @@ public class Hold {
         this.type=type;
         this.alder=alder;
         holdliste.add(this);
+        holdNavne.add(holdnavn);
     }
 
     // Se medlemmer på hold
@@ -24,12 +24,11 @@ public class Hold {
 
         new Hold("Senior K", "Konkurrence", "Senior");
         new Hold("Junior K", "Konkurrence", "Junior");
-        new Hold("Hyggeholdet", "Motion", "Senior");
-        new Hold("Hyggeholdet", "Motion", "Junior");
-
-
+        new Hold("Hyggeholdet S", "Motion", "Senior");
+        new Hold("Hyggeholdet J", "Motion", "Junior");
 
     }
+
     static void tilmeldSvømmehold(int navneIndex) {
         String age=Medlem.medlemmer.get(navneIndex).alder;
         String pro=Medlem.medlemmer.get(navneIndex).type;

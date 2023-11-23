@@ -55,6 +55,9 @@ public class Medlem {
                 String[] values = line.split(",");
 
                 new Medlem(values[0], sdf.parse(values[1]), values[2], values[3], values[4]);
+                if (!values[4].equals("0")){
+                    Hold.holdliste.indexOf(values[4]);
+                }
             }
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
