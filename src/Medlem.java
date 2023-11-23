@@ -29,8 +29,7 @@ public class Medlem {
 
 
 
-    Medlem(String navn, Date fødselsdag, String type, String disciplin){
-    Medlem(String navn, Date fødselsdag, String type,String hold){
+    Medlem(String navn, Date fødselsdag, String type, String hold, String disciplin){
         this.navn=navn;
         this.fødselsdag=fødselsdag;
         this.type=type;
@@ -55,8 +54,7 @@ public class Medlem {
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
 
-                new Medlem(values[0], sdf.parse(values[1]), values[2], values[3]);
-                new Medlem(values[0], sdf.parse(values[1]), values[2],values[3]);
+                new Medlem(values[0], sdf.parse(values[1]), values[2], values[3], values[4]);
             }
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
@@ -117,10 +115,7 @@ public class Medlem {
         } else
             stilart = "none";
 
-
-        new Medlem(nameIn, dateIn, typeIn, stilart);
-
-        new Medlem(nameIn, dateIn, typeIn,holdIn);
+        new Medlem(nameIn, dateIn, typeIn,holdIn, stilart);
         ToFile.saveList(medlemmer);
     }
 
@@ -150,6 +145,6 @@ public class Medlem {
 
     @Override
     public String toString() {
-        return navn+","+sdf.format(fødselsdag.getTime())+","+type+", "+disciplin;
+        return navn+","+sdf.format(fødselsdag.getTime())+","+type+", "+hold+", "+disciplin;
     }
 }
