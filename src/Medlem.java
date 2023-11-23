@@ -19,7 +19,7 @@ public class Medlem {
     String type;
     String alder;
     String hold;
-
+    String disciplin;
     ArrayList<String> discipliner;
 
     // Resultat class eller String[]?
@@ -29,11 +29,12 @@ public class Medlem {
 
 
 
-    Medlem(String navn, Date fødselsdag, String type){
+    Medlem(String navn, Date fødselsdag, String type, String hold, String disciplin){
         this.navn=navn;
         this.fødselsdag=fødselsdag;
         this.type=type;
-
+        this.disciplin = disciplin;
+        this.hold=hold;
         if (Period.between(fødselsdag.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears()<18){
             alder="Junior";
         } else alder="Senior";
@@ -53,7 +54,7 @@ public class Medlem {
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
 
-                new Medlem(values[0], sdf.parse(values[1]), values[2]);
+                new Medlem(values[0], sdf.parse(values[1]), values[2], values[3], values[4]);
             }
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
@@ -62,6 +63,7 @@ public class Medlem {
 
         // Opret et medlem
     static void opret() throws ParseException, IOException {
+        String stilart = "";
         cont = true;
         System.out.println("Indtast navn");
         String nameIn = input.nextLine();
@@ -92,11 +94,30 @@ public class Medlem {
         }
 
 
+        if (typeIn.equals("Konkurrence")) {
+
+            System.out.println("Vælg en stilart");
+
+            Menu.menu(new String[]{"Fri svømning", "Rygcrawl", "Butterfly", "Brystsvømning"});
+
+            stilart = input.nextLine();
+
+            switch (Menu.op) {
 
         new Medlem(nameIn, dateIn, typeIn);
 
         Hold.tilmeldSvømmehold(medlemmer.size()-1);
 
+                case 1 -> stilart = "Fri svømning";
+                case 2 -> stilart = "Rygcrawl";
+                case 3 -> stilart = "Butterfly";
+                case 4 -> stilart = "Brystsvømning";
+
+            }
+        } else
+            stilart = "none";
+
+        new Medlem(nameIn, dateIn, typeIn,holdIn, stilart);
         ToFile.saveList(medlemmer);
     }
 
@@ -125,6 +146,6 @@ public class Medlem {
 
     @Override
     public String toString() {
-        return navn+","+sdf.format(fødselsdag.getTime())+","+type+","+hold;
+        return navn+","+sdf.format(fødselsdag.getTime())+","+type+","+hold+","+disciplin;
     }
 }
