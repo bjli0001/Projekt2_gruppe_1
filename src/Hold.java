@@ -50,7 +50,6 @@ public class Hold {
         System.out.println("Vælg menupunkt [1,"+holdIndex.size()+"]:");
         Menu.op = Menu.inInt(holdliste.size());
         holdliste.get(holdIndex.get(Menu.op-1)).svoemmer.add(Medlem.medlemmer.get(navneIndex));
-        System.out.println(holdliste.get(holdIndex.get(Menu.op-1)).svoemmer);
 
         Medlem.medlemmer.get(navneIndex).hold=holdliste.get(holdIndex.get(Menu.op-1)).holdnavn;
     }

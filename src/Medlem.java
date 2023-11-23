@@ -29,7 +29,7 @@ public class Medlem {
 
 
 
-    Medlem(String navn, Date fødselsdag, String type, String hold, String disciplin){
+    Medlem(String navn, Date fødselsdag, String type, String disciplin, String hold){
         this.navn=navn;
         this.fødselsdag=fødselsdag;
         this.type=type;
@@ -116,8 +116,8 @@ public class Medlem {
             stilart = "none";
 
 
-        String holdIn="0";
-        new Medlem(nameIn, dateIn, typeIn, stilart,holdIn);
+
+        new Medlem(nameIn, dateIn, typeIn, stilart, "0");
 
 
         Hold.tilmeldSvømmehold(medlemmer.size()-1);
@@ -149,6 +149,6 @@ public class Medlem {
 
     @Override
     public String toString() {
-        return navn+","+sdf.format(fødselsdag.getTime())+","+type+","+hold+","+disciplin;
+        return navn+","+sdf.format(fødselsdag.getTime())+","+type+","+disciplin+","+hold;
     }
 }
