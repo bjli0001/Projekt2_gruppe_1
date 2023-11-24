@@ -9,13 +9,15 @@ public class Main {
         Medlem.indlæs();
 
 
+
         while (true) {
-            Menu.menu(new String[]{"Opret medlem", "Rediger medlem", "Se resultater", "Svømmehold"});
+            Menu.menu(new String[]{"Opret medlem", "Rediger medlem", "Se resultater", "Svømmehold", "Tilføj svømmetid"});
             switch (Menu.op) {
                 case 1 -> Medlem.opret();
                 case 2 -> Medlem.rediger();
                 case 3 -> Medlem.resultater();
                 case 4 -> Medlem.hold();
+                case 5 -> Medlem.tilføjSvømmeTid();
             }
         }
 

@@ -1,3 +1,5 @@
 Clara,2003/03/10,Konkurrence,Fri svømning,Senior K
 Lars,2187/10/22,Konkurrence,Rygcrawl,Junior K
 Lars,0013/02/07,Konkurrence,Fri svømning;Rygcrawl,Senior K
+Yusuf,1995/07/31,Konkurrence,Brystsvømning;Fri svømning;Rygcrawl;Butterfly,Senior K
+Lasse,0128/05/12,Konkurrence,,Senior K

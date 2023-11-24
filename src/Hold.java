@@ -4,10 +4,11 @@ public class Hold {
 
     static ArrayList<Hold> holdliste = new ArrayList<>();
     static ArrayList<String> holdNavne = new ArrayList<>();
-    String holdnavn;
-    String type;
-    String alder;
-    ArrayList<Medlem> svoemmer=new ArrayList<>();
+    protected String holdnavn;
+    protected String type;
+    protected String alder;
+    protected ArrayList<Medlem> svoemmer=new ArrayList<>();
+    private ArrayList<SvømmeTid> svømmeTider = new ArrayList<>();
 
     Hold (String holdnavn, String type, String alder){
         this.holdnavn=holdnavn;
@@ -20,16 +21,20 @@ public class Hold {
     // Se medlemmer på hold
 
 
-    static void opretHold() {
+    public static void opretHold() {
 
         new Hold("Senior K", "Konkurrence", "Senior");
-        new Hold("Junior K", "Konkurrence", "Junior");
+        new Hold("Junior K", "Kokurrence", "Junior");
         new Hold("Hyggeholdet S", "Motion", "Senior");
         new Hold("Hyggeholdet J", "Motion", "Junior");
 
     }
 
-    static void tilmeldSvømmehold(int navneIndex) {
+    public void tilføjSvømmetid(SvømmeTid svømmeTid){
+        this.svømmeTider.add(svømmeTid);
+    }
+
+    public static void tilmeldSvømmehold(int navneIndex) {
         String age=Medlem.medlemmer.get(navneIndex).alder;
         String pro=Medlem.medlemmer.get(navneIndex).type;
         ArrayList<Integer> holdIndex = new ArrayList<>();

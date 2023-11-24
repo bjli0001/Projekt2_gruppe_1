@@ -19,6 +19,7 @@ public class Medlem {
     String hold;
     List<String> discipliner = new ArrayList<>();
 
+
     // Resultat class eller String[]?
     //ArrayList<> resultater;
 
@@ -45,7 +46,7 @@ public class Medlem {
     static Scanner input = new Scanner(System.in);
     static boolean cont;
 
-    static void indlæs() {
+    public static void indlæs() {
         try (BufferedReader br = new BufferedReader(new FileReader("medlemmer.txt"))) {
             String line;
             while ((line = br.readLine()) != null) {
@@ -147,10 +148,35 @@ public class Medlem {
     // Se medlems resultater
     static void resultater(){
 
+
     }
 
     // Se medlemmer på hold
     static void hold(){
+
+    }
+    static void tilføjSvømmeTid() {
+        System.out.println("Indtast navn: ");
+        String navn = input.nextLine();
+        System.out.println("Indtast svømmetid: ");
+        double svømmeTid = input.nextDouble();
+        System.out.println("Indtast diciplin: ");
+        String diciplin = input.next();
+
+        Date fødselsdag = null;
+        for (Medlem medlem: medlemmer) {
+            if (medlem.navn.equals(navn)){
+                fødselsdag = medlem.fødselsdag;
+            }
+        }
+
+        if (Period.between(fødselsdag.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears()<18){
+
+            Hold.holdliste.get(1).tilføjSvømmetid(new SvømmeTid(navn, svømmeTid, diciplin));
+        } else Hold.holdliste.get(0).tilføjSvømmetid(new SvømmeTid(navn, svømmeTid, diciplin));
+
+
+
 
     }
 
