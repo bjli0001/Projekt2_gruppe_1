@@ -158,10 +158,10 @@ public class Medlem {
     static void tilføjSvømmeTid() {
         System.out.println("Indtast navn: ");
         String navn = input.nextLine();
-        System.out.println("Indtast svømmetid: ");
-        double svømmeTid = input.nextDouble();
         System.out.println("Indtast diciplin: ");
         String diciplin = input.next();
+        System.out.println("Indtast svømmetid: ");
+        double svømmeTid = input.nextDouble();
 
         Date fødselsdag = null;
         for (Medlem medlem: medlemmer) {
