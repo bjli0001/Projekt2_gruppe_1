@@ -243,7 +243,7 @@ public class Medlem {
 
 
 
-    static void tilføjSvømmeTid() {
+    static void tilføjSvømmeTid() throws IOException {
         System.out.println("Indtast navn: ");
         String navn = input.nextLine();
         System.out.println("Indtast svømmetid: ");
@@ -257,7 +257,7 @@ public class Medlem {
                 fødselsdag = medlem.fødselsdag;
             }
         }
-
+        ToFile.saveResults(new SvømmeTid(navn, svømmeTid, diciplin));
         if (Period.between(fødselsdag.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears()<18){
 
             Hold.holdliste.get(1).tilføjSvømmetid(new SvømmeTid(navn, svømmeTid, diciplin));
