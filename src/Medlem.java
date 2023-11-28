@@ -17,7 +17,9 @@ public class Medlem {
     String type;
     String alder;
     String hold;
+    int beløb;
     List<String> discipliner = new ArrayList<>();
+    boolean betalt = false;
 
 
     // Resultat class eller String[]?
@@ -33,9 +35,26 @@ public class Medlem {
         this.type=type;
         this.discipliner=disciplin;
         this.hold=hold;
+
         if (Period.between(fødselsdag.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears()<18){
             alder="Junior";
-        } else alder="Senior";
+            beløb = 1000;
+
+        } else {alder="Senior";
+            beløb = 1600;
+        }
+
+        if (Period.between(fødselsdag.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears()<=60) {
+
+            beløb = 1200;
+        }
+
+
+        if (type.equals("Passiv")) {
+
+            beløb = 500;
+
+        }
         medlemmer.add(this);
         navne.add(navn);
     }
@@ -134,15 +153,19 @@ public class Medlem {
 
     // Rediger medlems oplysninger
     static void rediger(){
-        System.out.println("Vælg en svømmer");
-        String svømmer = input.nextLine();
-        int navneIndex=navne.indexOf(svømmer);
+        int navneIndex=udvælgSvømmer();
         System.out.println(medlemmer.get(navneIndex));
         Menu.menu(new String[]{"Adminstrer medlemskab","Tilmeld svømmehold","Frameld Svømmehold","Tilføj ny bedste tid"});
         switch (Menu.op){
             case 2 -> Hold.tilmeldSvømmehold(navneIndex);
 
         }
+    }
+
+    static int udvælgSvømmer() {
+        System.out.println("Vælg en svømmer");
+        String svømmer = input.nextLine();
+        return navne.indexOf(svømmer);
     }
 
     // Se medlems resultater
@@ -155,6 +178,45 @@ public class Medlem {
     static void hold(){
 
     }
+
+    static void registrerBetaling() {
+
+        int navneindex = udvælgSvømmer();
+
+        if (medlemmer.get(navneindex).betalt) {
+
+            System.out.println("Kontingentet er allerede betalt");
+
+
+        } else {
+            System.out.println("Der mangler at blive betalt " + medlemmer.get(navneindex).beløb);
+
+            System.out.println("Ønsker du at registrere betaling?");
+
+            Menu.menu(new String[] {"Ja", "Nej"});
+
+            switch (Menu.op) {
+
+                case 1 -> medlemmer.get(navneindex).betalt = true;
+
+
+            }
+
+        }
+
+
+    }
+
+
+    static void seRestance() {
+
+
+
+
+    }
+
+
+
     static void tilføjSvømmeTid() {
         System.out.println("Indtast navn: ");
         String navn = input.nextLine();
