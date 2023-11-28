@@ -7,13 +7,15 @@ public class Hold {
     protected String holdnavn;
     protected String type;
     protected String alder;
+    protected String træner;
     protected ArrayList<Medlem> svoemmer=new ArrayList<>();
     private ArrayList<SvømmeTid> svømmeTider = new ArrayList<>();
 
-    Hold (String holdnavn, String type, String alder){
+    Hold (String holdnavn, String type, String alder, String træner){
         this.holdnavn=holdnavn;
         this.type=type;
         this.alder=alder;
+        this.træner=træner;
         holdliste.add(this);
         holdNavne.add(holdnavn);
     }
@@ -23,10 +25,10 @@ public class Hold {
 
     public static void opretHold() {
 
-        new Hold("Senior K", "Konkurrence", "Senior");
-        new Hold("Junior K", "Kokurrence", "Junior");
-        new Hold("Hyggeholdet S", "Motion", "Senior");
-        new Hold("Hyggeholdet J", "Motion", "Junior");
+        new Hold("Senior K", "Konkurrence", "Senior","Træner Mike Oxlong");
+        new Hold("Junior K", "Konkurrence", "Junior", "Træner Mette Polka");
+        new Hold("Hyggeholdet S", "Motion", "Senior","Ingen træner");
+        new Hold("Hyggeholdet J", "Motion", "Junior","Ingen træner");
 
     }
 
@@ -37,29 +39,19 @@ public class Hold {
     public static void tilmeldSvømmehold(int navneIndex) {
         String age=Medlem.medlemmer.get(navneIndex).alder;
         String pro=Medlem.medlemmer.get(navneIndex).type;
-        ArrayList<Integer> holdIndex = new ArrayList<>();
-        int j=0;
         for (Hold i: holdliste){
             if (i.alder.equals(age)&&i.type.equals(pro)){
-                holdIndex.add(j);
+                i.svoemmer.add(Medlem.medlemmer.get(navneIndex));
+                Medlem.medlemmer.get(navneIndex).hold=i.holdnavn;
+                System.out.println("Svømmeren er tilmeldt "+i);
             }
-            j++;
         }
-        j=1;
-        for(int i: holdIndex){
 
-            System.out.println("Tast "+j+": "+holdliste.get(i));
-            j++;
-        }
-        System.out.println("Vælg menupunkt [1,"+holdIndex.size()+"]:");
-        Menu.op = Menu.inInt(holdliste.size());
-        holdliste.get(holdIndex.get(Menu.op-1)).svoemmer.add(Medlem.medlemmer.get(navneIndex));
 
-        Medlem.medlemmer.get(navneIndex).hold=holdliste.get(holdIndex.get(Menu.op-1)).holdnavn;
     }
 
     @Override
     public String toString() {
-        return "Holdet "+holdnavn+" for "+type+" i aldersgruppen "+alder;
+        return "Holdet "+holdnavn+" for "+type+" i aldersgruppen "+alder+" med træneren:"+træner;
     }
 }
