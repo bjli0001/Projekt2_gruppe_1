@@ -157,7 +157,7 @@ public class Medlem {
         System.out.println(medlemmer.get(navneIndex));
         Menu.menu(new String[]{"Adminstrer medlemskab","Tilmeld svømmehold","Frameld Svømmehold","Tilføj ny bedste tid"});
         switch (Menu.op){
-            case 1 -> Medlem.ændreMedlemskab();
+            case 1 -> Medlem.adminstrerMedlemskab();
             case 2 -> Hold.tilmeldSvømmehold(navneIndex);
 
         }
@@ -215,7 +215,7 @@ public class Medlem {
 
 
     }
-    static void ændreMedlemskab() {
+    static void adminstrerMedlemskab() {
 
 
     }
