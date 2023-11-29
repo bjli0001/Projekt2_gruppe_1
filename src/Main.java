@@ -7,6 +7,7 @@ public class Main {
 
         Hold.opretHold();
         Medlem.indlæs();
+        Hold.indlæsTider();
 
 
 
@@ -17,7 +18,7 @@ public class Main {
                 case 2 -> Medlem.rediger();
                 case 3 -> Medlem.resultater();
                 case 4 -> Medlem.hold();
-                case 5 -> Medlem.tilføjSvømmeTid();
+                case 5 -> Hold.tilføjSvømmeTid();
                 case 6 -> {
                     Menu.menu(new String[]{"Registrer betaling", "Se medlemmer med restance"});
 

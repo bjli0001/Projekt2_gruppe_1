@@ -176,9 +176,20 @@ public class Medlem {
     }
 
     static int udvælgSvømmer() {
-        System.out.println("Vælg en svømmer");
-        String svømmer = input.nextLine();
-        return navne.indexOf(svømmer);
+
+        String svømmer = null;
+        while (true) {
+            System.out.println("Vælg en svømmer, q for at gå tilbage");
+            svømmer = input.nextLine();
+            if (Medlem.navne.contains(svømmer)) {
+                return navne.indexOf(svømmer);
+            }
+            else if (svømmer.equals("q")){
+                return -1;
+            }
+            else System.out.println("Svømmer findes ikke");
+        }
+
     }
 
     // Se medlems resultater
@@ -236,6 +247,7 @@ public class Medlem {
         }
 
     }
+
     static void ændreMedlemskab() {
 
 
@@ -243,30 +255,7 @@ public class Medlem {
 
 
 
-    static void tilføjSvømmeTid() throws IOException {
-        System.out.println("Indtast navn: ");
-        String navn = input.nextLine();
-        System.out.println("Indtast svømmetid: ");
-        double svømmeTid = input.nextDouble();
-        System.out.println("Indtast diciplin: ");
-        String diciplin = input.next();
 
-        Date fødselsdag = null;
-        for (Medlem medlem: medlemmer) {
-            if (medlem.navn.equals(navn)){
-                fødselsdag = medlem.fødselsdag;
-            }
-        }
-        ToFile.saveResults(new SvømmeTid(navn, svømmeTid, diciplin));
-        if (Period.between(fødselsdag.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears()<18){
-
-            Hold.holdliste.get(1).tilføjSvømmetid(new SvømmeTid(navn, svømmeTid, diciplin));
-        } else Hold.holdliste.get(0).tilføjSvømmetid(new SvømmeTid(navn, svømmeTid, diciplin));
-
-
-
-
-    }
 
     @Override
     public String toString() {

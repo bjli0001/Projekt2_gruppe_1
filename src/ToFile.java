@@ -2,6 +2,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class ToFile {
 
@@ -10,16 +11,19 @@ public class ToFile {
         PrintWriter ud = new PrintWriter(fil);
 
         for (Medlem m: medlemmer){
-
             ud.println(m.toString());
         }
         fil.close();
     }
 
-    public static void saveResults(SvømmeTid svømmetid) throws IOException{
-        FileWriter fil = new FileWriter("Svømmetider.txt");
+    public static void saveResults(Hold hold) throws IOException{
+        System.out.println("John");
+        FileWriter fil = new FileWriter(hold.holdnavn+"_tider.txt");
         PrintWriter ud = new PrintWriter(fil);
-        ud.println(svømmetid.toString());
+        ud.println(hold.tiderFri.stream().map(Object::toString).collect(Collectors.joining(":")));
+        ud.println(hold.tiderRyg.stream().map(Object::toString).collect(Collectors.joining(":")));
+        ud.println(hold.tiderButterfly.stream().map(Object::toString).collect(Collectors.joining(":")));
+        ud.println(hold.tiderBryst.stream().map(Object::toString).collect(Collectors.joining(":")));
         fil.close();
 
     }

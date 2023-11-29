@@ -12,32 +12,50 @@ public class SvømmeTid {
         this.diciplin = diciplin;
     }
 
-    public String getName() {
-        return name;
+    @Override
+    public String toString() {
+        return name + ", " + diciplin+ ", " + tid;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    public Double getTid() {
-        return tid;
-    }
 
-    public void setTid(Double tid) {
-        this.tid = tid;
-    }
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
+//
+//    public Double getTid() {
+//        return tid;
+//    }
+//
+//    public void setTid(Double tid) {
+//        this.tid = tid;
+//    }
+//
+//    public String getDiciplin() {
+//        return diciplin;
+//    }
+//
+//    public void setDiciplin(String diciplin) {
+//        this.diciplin = diciplin;
+//    }
+}
 
-    public String getDiciplin() {
-        return diciplin;
-    }
+class KonkurrenceTid extends SvømmeTid{
+    int placering;
+    String stævneNavn;
 
-    public void setDiciplin(String diciplin) {
-        this.diciplin = diciplin;
+    public KonkurrenceTid(String name, Double tid, String diciplin, int placering, String stævneNavn) {
+        super(name, tid, diciplin);
+        this.placering=placering;
+        this.stævneNavn=stævneNavn;
     }
 
     @Override
     public String toString() {
-        return name + ", " + diciplin+ ", " + tid;
+        return super.toString()+", "+placering+", "+stævneNavn;
     }
 }
