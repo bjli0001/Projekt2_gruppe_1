@@ -15,6 +15,14 @@ public class ToFile {
         }
         fil.close();
     }
+
+    public static void saveResults(SvømmeTid svømmetid) throws IOException{
+        FileWriter fil = new FileWriter("Svømmetider.txt");
+        PrintWriter ud = new PrintWriter(fil);
+        ud.println(svømmetid.toString());
+        fil.close();
+
+    }
 //    public static void saveCustomer(ArrayList<Customer> dataLines) throws IOException {
 //        FileWriter fil = new FileWriter("customers.txt");
 //        PrintWriter ud = new PrintWriter(fil);

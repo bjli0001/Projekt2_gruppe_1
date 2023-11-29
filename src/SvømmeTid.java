@@ -35,4 +35,9 @@ public class SvømmeTid {
     public void setDiciplin(String diciplin) {
         this.diciplin = diciplin;
     }
+
+    @Override
+    public String toString() {
+        return name + ", " + diciplin+ ", " + tid;
+    }
 }

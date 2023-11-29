@@ -19,7 +19,8 @@ public class Medlem {
     String hold;
     int beløb;
     List<String> discipliner = new ArrayList<>();
-    boolean betalt = false;
+    boolean betalt;
+    static ArrayList<Integer> restanceIndex = new ArrayList<>();
 
 
     // Resultat class eller String[]?
@@ -29,12 +30,13 @@ public class Medlem {
 
 
 
-    Medlem(String navn, Date fødselsdag, String type, List<String> disciplin, String hold){
+    Medlem(String navn, Date fødselsdag, String type, List<String> disciplin, String hold, boolean betalt){
         this.navn=navn;
         this.fødselsdag=fødselsdag;
         this.type=type;
         this.discipliner=disciplin;
         this.hold=hold;
+        this.betalt=betalt;
 
         if (Period.between(fødselsdag.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears()<18){
             alder="Junior";
@@ -55,8 +57,16 @@ public class Medlem {
             beløb = 500;
 
         }
+
+
         medlemmer.add(this);
         navne.add(navn);
+
+        if (!betalt) {
+
+            restanceIndex.add(medlemmer.size() - 1);
+
+        }
     }
 
 
@@ -71,11 +81,13 @@ public class Medlem {
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
                 List<String> disci = Arrays.asList(values[3].split(","));
-                new Medlem(values[0], sdf.parse(values[1]), values[2], disci, values[4]);
+                new Medlem(values[0], sdf.parse(values[1]), values[2], disci, values[4], Boolean.parseBoolean(values[5]));
 
                 if (!values[4].equals("0")){
                     Hold.holdliste.get(Hold.holdNavne.indexOf(values[4])).svoemmer.add(medlemmer.get(medlemmer.size()-1));
                 }
+
+
             }
         } catch (IOException | ParseException e) {
             throw new RuntimeException(e);
@@ -144,7 +156,7 @@ public class Medlem {
 
 
 
-        new Medlem(nameIn, dateIn, typeIn, stilart, "0");
+        new Medlem(nameIn, dateIn, typeIn, stilart, "0", false);
 
 
         Hold.tilmeldSvømmehold(medlemmer.size()-1);
@@ -180,7 +192,7 @@ public class Medlem {
 
     }
 
-    static void registrerBetaling() {
+    static void registrerBetaling() throws IOException {
 
         int navneindex = udvælgSvømmer();
 
@@ -198,7 +210,12 @@ public class Medlem {
 
             switch (Menu.op) {
 
-                case 1 -> medlemmer.get(navneindex).betalt = true;
+                case 1 -> {
+                    medlemmer.get(navneindex).betalt = true;
+                    ToFile.saveList(medlemmer);
+                    restanceIndex.remove(navneindex);
+
+                }
 
 
             }
@@ -211,8 +228,12 @@ public class Medlem {
 
     static void seRestance() {
 
+        System.out.println("Følgende medlemmer mangler at betale kontingent:");
 
+        for (Integer m : restanceIndex) {
+            System.out.println(medlemmer.get(m).navn+" "+sdf.format(medlemmer.get(m).fødselsdag.getTime())+" "+medlemmer.get(m).type);
 
+        }
 
     }
     static void adminstrerMedlemskab() {
@@ -222,7 +243,7 @@ public class Medlem {
 
 
 
-    static void tilføjSvømmeTid() {
+    static void tilføjSvømmeTid() throws IOException {
         System.out.println("Indtast navn: ");
         String navn = input.nextLine();
         System.out.println("Indtast svømmetid: ");
@@ -236,7 +257,7 @@ public class Medlem {
                 fødselsdag = medlem.fødselsdag;
             }
         }
-
+        ToFile.saveResults(new SvømmeTid(navn, svømmeTid, diciplin));
         if (Period.between(fødselsdag.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears()<18){
 
             Hold.holdliste.get(1).tilføjSvømmetid(new SvømmeTid(navn, svømmeTid, diciplin));
@@ -250,6 +271,6 @@ public class Medlem {
     @Override
     public String toString() {
         String disci = String.join(";",discipliner);
-        return navn+","+sdf.format(fødselsdag.getTime())+","+type+","+disci+","+hold;
+        return navn+","+sdf.format(fødselsdag.getTime())+","+type+","+disci+","+hold+","+betalt;
     }
 }
