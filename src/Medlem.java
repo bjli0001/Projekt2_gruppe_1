@@ -194,7 +194,19 @@ public class Medlem {
 
     // Se medlems resultater
     static void resultater(){
+        System.out.println("Resultater for alle hold:");
+        System.out.println();
 
+        for (Hold hold : Hold.holdliste) {
+            System.out.println(hold);
+
+            System.out.println("Frisvømning tider: " + hold.tiderFri);
+            System.out.println("Rygcrawl tider: " + hold.tiderRyg);
+            System.out.println("Butterfly tider: " + hold.tiderButterfly);
+            System.out.println("Brystsvømning Times: " + hold.tiderBryst);
+
+            System.out.println();
+        }
 
     }
 
