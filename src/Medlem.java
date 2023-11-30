@@ -164,12 +164,12 @@ public class Medlem {
     }
 
     // Rediger medlems oplysninger
-    static void rediger(){
+    static void rediger() throws IOException {
         int navneIndex=udvælgSvømmer();
         System.out.println(medlemmer.get(navneIndex));
         Menu.menu(new String[]{"Adminstrer medlemskab","Tilmeld svømmehold","Frameld Svømmehold","Tilføj ny bedste tid"});
         switch (Menu.op){
-            case 1 -> Medlem.adminstrerMedlemskab();
+            case 1 -> Medlem.adminstrerMedlemskab(navneIndex);
             case 2 -> Hold.tilmeldSvømmehold(navneIndex);
 
         }
@@ -247,7 +247,69 @@ public class Medlem {
         }
 
     }
-    static void adminstrerMedlemskab() {
+    static void adminstrerMedlemskab(int navneIndex) throws IOException {   //Ændrer medlemsskabet for svømmeren
+        if (medlemmer.get(navneIndex).type.equals("Motion")||medlemmer.get(navneIndex).type.equals("Konkurrence")){
+            System.out.println("Dit medlemsskab er lige pt et "+medlemmer.get(navneIndex).type+" vil du ændre det til et Passivt medlemsskab?");
+            Menu.menu(new String[]{"Ja","Nej"});
+
+            switch (Menu.op) {
+                case 1 -> {
+                    medlemmer.get(navneIndex).type = "Passiv";
+                    medlemmer.get(navneIndex).hold= "0";
+                    medlemmer.get(navneIndex).discipliner=new ArrayList<>();
+                    medlemmer.get(navneIndex).discipliner.add("Ingen tilknyttet disciplin");
+                    ToFile.saveList(medlemmer);
+
+                }
+            }
+        }
+        else {
+            System.out.println("Dit medlemsskab er lige pt et "+medlemmer.get(navneIndex).type+" vil du ændre det til et aktivt medlemsskab?");
+            Menu.menu(new String[]{"Ja","Nej"});
+
+            switch (Menu.op){
+                case 1 -> {
+                    System.out.println("Fedt! Er du konkurrence svømmer eller motions svømmer?");
+                    Menu.menu (new String[]{"Konkurrence","Motion"});
+                    switch(Menu.op){
+                        case 1-> {
+                            medlemmer.get(navneIndex).type = "Konkurrence";
+                            System.out.println("Vælg en stilart!");
+                            List<String> stilart = new ArrayList<>();
+                            boolean nyStilart = true;
+
+                            while(nyStilart) {
+
+                                Menu.menu(new String[]{"Fri svømning", "Rygcrawl", "Butterfly", "Brystsvømning", "Færdiggør, gem og luk"});
+
+
+                                switch (Menu.op) {
+
+
+                                    case 1 -> stilart.add("Fri svømning");
+                                    case 2 -> stilart.add("Rygcrawl");
+                                    case 3 -> stilart.add("Butterfly");
+                                    case 4 -> stilart.add("Brystsvømning");
+                                    case 5 -> nyStilart = false;
+
+                                }
+
+
+                            }
+                            medlemmer.get(navneIndex).discipliner=stilart;
+                            Hold.tilmeldSvømmehold(navneIndex);
+                            ToFile.saveList(medlemmer);
+                        }
+                        case 2 -> {
+                            medlemmer.get(navneIndex).type = "Motion";
+                            Hold.tilmeldSvømmehold(navneIndex);
+                            ToFile.saveList(medlemmer);
+                        }
+                    }
+                }
+            }
+        }
+
 
 
     }

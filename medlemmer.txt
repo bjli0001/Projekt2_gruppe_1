@@ -7,4 +7,5 @@ Mike Oxmall,2007/10/10,Konkurrence,Rygcrawl,Junior K,false
 Julie Lampeskærm,1978/11/10,Konkurrence,Butterfly,Senior K,true
 Gitte,1999/03/12,Passiv,Ingen tilknyttet disciplin,0,false
 lars,1980/12/20,Konkurrence,Rygcrawl;Rygcrawl,Senior K,false
-Pele,1940/12/24,Konkurrence,Brystsvømning,Senior K,false
+Pele,1940/12/24,Konkurrence,Brystsvømning;Fri svømning,Senior K,false
+Mark,1997/10/09,Motion,Ingen tilknyttet disciplin,Hyggeholdet S,false
