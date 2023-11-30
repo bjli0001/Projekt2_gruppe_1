@@ -192,27 +192,7 @@ public class Medlem {
 
     }
 
-    // Se medlems resultater
-    static void resultater(){
-        System.out.println("Resultater for alle hold:");
-        System.out.println("Svømmer, Tid, Placering, Stævne");
-        System.out.println();
 
-        for (int i=0; i<2; i++) {
-            System.out.println(Hold.holdliste.get(i));
-            Collections.sort(Hold.holdliste.get(i).tiderFri);
-            Collections.sort(Hold.holdliste.get(i).tiderRyg);
-            Collections.sort(Hold.holdliste.get(i).tiderButterfly);
-            Collections.sort(Hold.holdliste.get(i).tiderBryst);
-            System.out.println("Frisvømning tider: " + Hold.holdliste.get(i).tiderFri);
-            System.out.println("Rygcrawl tider: " + Hold.holdliste.get(i).tiderRyg);
-            System.out.println("Butterfly tider: " + Hold.holdliste.get(i).tiderButterfly);
-            System.out.println("Brystsvømning Times: " + Hold.holdliste.get(i).tiderBryst);
-
-            System.out.println();
-        }
-
-    }
 
     // Se medlemmer på hold
     static void hold(){

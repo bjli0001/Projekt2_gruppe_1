@@ -1,4 +1,4 @@
-Clara,210.0:Clara,72.0:Clara,860.0,1,Kea
+Clara,12.0:Lars<3,30.0:Yusuf,133.0:Julie Lampeskærm,5.0,1,WorldChamps:Clara,71.0:Clara,120.0:John,1.0:Test,830.0
 
 
-Clara,60.0
+

@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class SvømmeTid implements Comparable<SvømmeTid> {
 
-    private String name;
+    String name;
     private Double tid;
 
 
@@ -16,6 +16,12 @@ public class SvømmeTid implements Comparable<SvømmeTid> {
         return name+","+tid;
     }
 
+    public String toPrint(){
+        String min = String.valueOf(Math.round(Math.floor(tid/60)));
+        String sek = String.valueOf(tid%60);
+
+        return name+" "+min+":"+sek;
+    }
 
     @Override
     public int compareTo(SvømmeTid o) {
@@ -70,5 +76,9 @@ class KonkurrenceTid extends SvømmeTid{
     @Override
     public String toString() {
         return super.toString()+","+placering+","+stævneNavn;
+    }
+
+    public String toPrint(){
+        return super.toPrint()+", "+placering+". plads, "+stævneNavn;
     }
 }
