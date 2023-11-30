@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class SvømmeTid {
+public class SvømmeTid implements Comparable<SvømmeTid> {
 
     private String name;
     private Double tid;
@@ -14,9 +14,22 @@ public class SvømmeTid {
 
     @Override
     public String toString() {
-        return name + ", " + diciplin+ ", " + tid;
+        return name + ", " + tid;
     }
 
+    @Override
+    public int compareTo(SvømmeTid o) {
+        double diff = this.tid - o.getTid();
+
+        if (diff>0) {
+        return 1;
+        }
+        else if (diff<0) { return -1; }
+        else {
+            return 0;
+        }
+
+    }
 
 
 //    public String getName() {
@@ -27,21 +40,21 @@ public class SvømmeTid {
 //        this.name = name;
 //    }
 //
-//    public Double getTid() {
-//        return tid;
-//    }
+    public Double getTid() {
+        return tid;
+    }
+
+    public void setTid(Double tid) {
+        this.tid = tid;
+    }
+
+  /*  public String getDiciplin() {
+        return diciplin;
+    //}
 //
-//    public void setTid(Double tid) {
-//        this.tid = tid;
-//    }
-//
-//    public String getDiciplin() {
-//        return diciplin;
-//    }
-//
-//    public void setDiciplin(String diciplin) {
-//        this.diciplin = diciplin;
-//    }
+    //public void setDiciplin(String diciplin) {
+        this.diciplin = diciplin;
+    } */
 }
 
 class KonkurrenceTid extends SvømmeTid{

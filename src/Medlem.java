@@ -195,15 +195,19 @@ public class Medlem {
     // Se medlems resultater
     static void resultater(){
         System.out.println("Resultater for alle hold:");
+        System.out.println("Svømmer, Tid, Placering, Stævne");
         System.out.println();
 
-        for (Hold hold : Hold.holdliste) {
-            System.out.println(hold);
-
-            System.out.println("Frisvømning tider: " + hold.tiderFri);
-            System.out.println("Rygcrawl tider: " + hold.tiderRyg);
-            System.out.println("Butterfly tider: " + hold.tiderButterfly);
-            System.out.println("Brystsvømning Times: " + hold.tiderBryst);
+        for (int i=0; i<2; i++) {
+            System.out.println(Hold.holdliste.get(i));
+            Collections.sort(Hold.holdliste.get(i).tiderFri);
+            Collections.sort(Hold.holdliste.get(i).tiderRyg);
+            Collections.sort(Hold.holdliste.get(i).tiderButterfly);
+            Collections.sort(Hold.holdliste.get(i).tiderBryst);
+            System.out.println("Frisvømning tider: " + Hold.holdliste.get(i).tiderFri);
+            System.out.println("Rygcrawl tider: " + Hold.holdliste.get(i).tiderRyg);
+            System.out.println("Butterfly tider: " + Hold.holdliste.get(i).tiderButterfly);
+            System.out.println("Brystsvømning Times: " + Hold.holdliste.get(i).tiderBryst);
 
             System.out.println();
         }
@@ -306,11 +310,11 @@ public class Medlem {
 
                                 }
 
-
                             }
                             medlemmer.get(navneIndex).discipliner=stilart;
                             Hold.tilmeldSvømmehold(navneIndex);
                             ToFile.saveList(medlemmer);
+
                         }
                         case 2 -> {
                             medlemmer.get(navneIndex).type = "Motion";
@@ -321,14 +325,7 @@ public class Medlem {
                 }
             }
         }
-
-
-
     }
-
-
-
-
 
     @Override
     public String toString() {

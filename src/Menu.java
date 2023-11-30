@@ -38,23 +38,4 @@ public class Menu {
         } while(!OK);
         return num;
     }
-
-//    static String inTlf() {
-//        boolean cont = true;
-//        String tlf = "";
-//        while (cont) {
-//            System.out.println("Indtast telefon nr.");
-//            tlf = input.nextLine();
-//
-//            if (tlf.length() == 8) {
-//                try {
-//                    Integer.parseInt(tlf);
-//                    cont = false;
-//                } catch (Exception e) {
-//                    System.out.println("Ugyldigt telefon nr.");
-//                }
-//            } else System.out.println("Ugyldigt telefon nr.");
-//        }
-//        return tlf;
-//    }
 }

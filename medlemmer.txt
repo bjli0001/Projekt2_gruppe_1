@@ -9,3 +9,8 @@ Gitte,1999/03/12,Passiv,Ingen tilknyttet disciplin,0,false
 lars,1980/12/20,Konkurrence,Rygcrawl;Rygcrawl,Senior K,false
 Pele,1940/12/24,Konkurrence,Brystsvømning;Fri svømning,Senior K,false
 Mark,1997/10/09,Motion,Ingen tilknyttet disciplin,Hyggeholdet S,false
+John,1995/02/24,Konkurrence,Fri svømning,Senior K,false
+Test,1995/04/23,Konkurrence,Fri svømning;Rygcrawl;Butterfly,Senior K,false
+Test_1,1994/12/12,Konkurrence,Fri svømning,Senior K,false
+Test_2,1994/12/13,Konkurrence,Fri svømning,Senior K,false
+Test_3,1994/12/13,Konkurrence,Fri svømning,Senior K,false
