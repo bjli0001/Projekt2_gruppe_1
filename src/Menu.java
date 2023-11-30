@@ -19,6 +19,7 @@ public class Menu {
 
         boolean OK=false;
         int num=0;
+        
         do {
             try {
                 num= input.nextInt();

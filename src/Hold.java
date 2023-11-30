@@ -1,19 +1,33 @@
-import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
+import java.util.*;
 
 public class Hold {
+    static Scanner input = new Scanner(System.in);
 
     static ArrayList<Hold> holdliste = new ArrayList<>();
     static ArrayList<String> holdNavne = new ArrayList<>();
     protected String holdnavn;
     protected String type;
     protected String alder;
+    protected String træner;
     protected ArrayList<Medlem> svoemmer=new ArrayList<>();
-    private ArrayList<SvømmeTid> svømmeTider = new ArrayList<>();
+    ArrayList<SvømmeTid> tiderFri = new ArrayList<>();
+    ArrayList<SvømmeTid> tiderRyg = new ArrayList<>();
+    ArrayList<SvømmeTid> tiderButterfly = new ArrayList<>();
+    ArrayList<SvømmeTid> tiderBryst = new ArrayList<>();
 
-    Hold (String holdnavn, String type, String alder){
+
+    Hold (String holdnavn, String type, String alder, String træner){
         this.holdnavn=holdnavn;
         this.type=type;
         this.alder=alder;
+        this.træner=træner;
         holdliste.add(this);
         holdNavne.add(holdnavn);
     }
@@ -23,43 +37,182 @@ public class Hold {
 
     public static void opretHold() {
 
-        new Hold("Senior K", "Konkurrence", "Senior");
-        new Hold("Junior K", "Kokurrence", "Junior");
-        new Hold("Hyggeholdet S", "Motion", "Senior");
-        new Hold("Hyggeholdet J", "Motion", "Junior");
+        new Hold("Senior K", "Konkurrence", "Senior","Træner Mike Oxlong");
+        new Hold("Junior K", "Konkurrence", "Junior", "Træner Mette Polka");
+        new Hold("Hyggeholdet S", "Motion", "Senior","Ingen træner");
+        new Hold("Hyggeholdet J", "Motion", "Junior","Ingen træner");
 
     }
 
-    public void tilføjSvømmetid(SvømmeTid svømmeTid){
-        this.svømmeTider.add(svømmeTid);
-    }
+    static void tilføjSvømmeTid() throws IOException {
+        double tid;
+        String diciplin = null;
+        boolean type = false;
 
+
+        int navnIndex = Medlem.udvælgSvømmer();
+
+        if (navnIndex > -1) {
+
+            if (Medlem.medlemmer.get(navnIndex).type.equals("Konkurrence")) {
+                String navn = Medlem.navne.get(navnIndex);
+                Date fødselsdag = Medlem.medlemmer.get(navnIndex).fødselsdag;
+
+                Menu.menu(new String[]{"Træning", "Konkurrence"});
+
+
+                if (Menu.op == 2) {
+                    type = true;
+                }
+
+                System.out.println("Indtast svømmetid (mm:ss): ");
+                String svømmeTid = input.nextLine();
+                String[] svømmeTidArr = svømmeTid.split(":");
+                try {
+                    tid = Integer.parseInt(svømmeTidArr[0]) * 60 + Integer.parseInt(svømmeTidArr[1]);
+
+                    System.out.println("Vælg diciplin: ");
+                    Menu.menu(new String[]{"Fri svømning", "Rygcrawl", "Butterfly", "Brystsvømning"});
+
+
+                    switch (Menu.op) {
+
+
+                        case 1 -> diciplin = "Fri svømning";
+                        case 2 -> diciplin = "Rygcrawl";
+                        case 3 -> diciplin = "Butterfly";
+                        case 4 -> diciplin = "Brystsvømning";
+
+
+                    }
+
+
+
+                    if (type) {
+                        System.out.println("Indtast stævne navn: ");
+                        String stævneNavn = input.nextLine();
+                        System.out.println("Indtast placering: ");
+                        int placering = Menu.inInt(100);
+
+
+
+
+                        if (Period.between(fødselsdag.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears() < 18) {
+                            switch (diciplin){
+                                case "Fri svømning" -> Hold.holdliste.get(1).tiderFri.add(new KonkurrenceTid(navn, tid, diciplin, placering, stævneNavn));
+                                case "Rygcrawl" -> Hold.holdliste.get(1).tiderRyg.add(new KonkurrenceTid(navn, tid, diciplin, placering, stævneNavn));
+                                case "Butterfly" -> Hold.holdliste.get(1).tiderButterfly.add(new KonkurrenceTid(navn, tid, diciplin, placering, stævneNavn));
+                                case "Brystsvømning" -> Hold.holdliste.get(1).tiderBryst.add(new KonkurrenceTid(navn, tid, diciplin, placering, stævneNavn));
+                            }
+                            ToFile.saveResults(Hold.holdliste.get(1));
+
+                        } else {
+                            switch (diciplin){
+                                case "Fri svømning" -> Hold.holdliste.get(0).tiderFri.add(new KonkurrenceTid(navn, tid, diciplin, placering, stævneNavn));
+                                case "Rygcrawl" -> Hold.holdliste.get(0).tiderRyg.add(new KonkurrenceTid(navn, tid, diciplin, placering, stævneNavn));
+                                case "Butterfly" -> Hold.holdliste.get(0).tiderButterfly.add(new KonkurrenceTid(navn, tid, diciplin, placering, stævneNavn));
+                                case "Brystsvømning" -> Hold.holdliste.get(0).tiderBryst.add(new KonkurrenceTid(navn, tid, diciplin, placering, stævneNavn));
+                            }
+                            ToFile.saveResults(Hold.holdliste.get(0));
+                        }
+                    }
+                    else {
+
+                        if (Period.between(fødselsdag.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears() < 18) {
+                            switch (diciplin) {
+                                case "Fri svømning" -> Hold.holdliste.get(1).tiderFri.add(new SvømmeTid(navn, tid, diciplin));
+                                case "Rygcrawl" -> Hold.holdliste.get(1).tiderRyg.add(new SvømmeTid(navn, tid, diciplin));
+                                case "Butterfly" -> Hold.holdliste.get(1).tiderButterfly.add(new SvømmeTid(navn, tid, diciplin));
+                                case "Brystsvømning" -> Hold.holdliste.get(1).tiderBryst.add(new SvømmeTid(navn, tid, diciplin));
+                            }
+                            ToFile.saveResults(Hold.holdliste.get(1));
+
+                        } else {
+                            switch (diciplin) {
+                                case "Fri svømning" -> Hold.holdliste.get(0).tiderFri.add(new SvømmeTid(navn, tid, diciplin));
+                                case "Rygcrawl" -> Hold.holdliste.get(0).tiderRyg.add(new SvømmeTid(navn, tid, diciplin));
+                                case "Butterfly" -> Hold.holdliste.get(0).tiderButterfly.add(new SvømmeTid(navn, tid, diciplin));
+                                case "Brystsvømning" -> Hold.holdliste.get(0).tiderBryst.add(new SvømmeTid(navn, tid, diciplin));
+                            }
+                            ToFile.saveResults(Hold.holdliste.get(0));
+                        }
+                    }
+
+                } catch (Exception e) {
+                    System.out.println("Ugyldig tid");
+                }
+
+            }
+            else System.out.println("Svømmeren er ikke konkurrence svømmer");
+        }
+    }
     public static void tilmeldSvømmehold(int navneIndex) {
         String age=Medlem.medlemmer.get(navneIndex).alder;
         String pro=Medlem.medlemmer.get(navneIndex).type;
-        ArrayList<Integer> holdIndex = new ArrayList<>();
-        int j=0;
         for (Hold i: holdliste){
             if (i.alder.equals(age)&&i.type.equals(pro)){
-                holdIndex.add(j);
+                i.svoemmer.add(Medlem.medlemmer.get(navneIndex));
+                Medlem.medlemmer.get(navneIndex).hold=i.holdnavn;
+                System.out.println("Svømmeren er tilmeldt "+i);
             }
-            j++;
         }
-        j=1;
-        for(int i: holdIndex){
 
-            System.out.println("Tast "+j+": "+holdliste.get(i));
-            j++;
+
+    }
+
+    public static void indlæsTider(){
+        try (BufferedReader br = new BufferedReader(new FileReader("Senior K_tider.txt"))) {
+            String line;
+            int i = 0;
+            String[] gemtTid;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(":");
+
+                for (String s: values) {
+                    gemtTid=s.split(",");
+                    if (gemtTid.length == 3) {
+                        switch (i) {
+                            case 0 -> Hold.holdliste.get(0).tiderFri.add(new SvømmeTid(gemtTid[0], Double.parseDouble(gemtTid[2]), "Fri svømning"));
+                            case 1 -> Hold.holdliste.get(0).tiderRyg.add(new SvømmeTid(gemtTid[0], Double.parseDouble(gemtTid[2]), "Rygcrawl"));
+                            case 2 -> Hold.holdliste.get(0).tiderButterfly.add(new SvømmeTid(gemtTid[0], Double.parseDouble(gemtTid[2]), "Butterfly"));
+                            case 3 -> Hold.holdliste.get(0).tiderBryst.add(new SvømmeTid(gemtTid[0], Double.parseDouble(gemtTid[2]), "Brystsvømning"));
+                        }
+                        ToFile.saveResults(Hold.holdliste.get(0));
+                    }
+                }
+                i++;
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        System.out.println("Vælg menupunkt [1,"+holdIndex.size()+"]:");
-        Menu.op = Menu.inInt(holdliste.size());
-        holdliste.get(holdIndex.get(Menu.op-1)).svoemmer.add(Medlem.medlemmer.get(navneIndex));
+        try (BufferedReader br = new BufferedReader(new FileReader("Junior K_tider.txt"))) {
+            String line;
+            int i = 0;
+            String[] gemtTid;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(":");
 
-        Medlem.medlemmer.get(navneIndex).hold=holdliste.get(holdIndex.get(Menu.op-1)).holdnavn;
+                for (String s: values) {
+                    gemtTid=s.split(",");
+                    if (gemtTid.length == 3) {
+                        switch (i) {
+                            case 0 -> Hold.holdliste.get(1).tiderFri.add(new SvømmeTid(gemtTid[0], Double.parseDouble(gemtTid[2]), "Fri svømning"));
+                            case 1 -> Hold.holdliste.get(1).tiderRyg.add(new SvømmeTid(gemtTid[0], Double.parseDouble(gemtTid[2]), "Rygcrawl"));
+                            case 2 -> Hold.holdliste.get(1).tiderButterfly.add(new SvømmeTid(gemtTid[0], Double.parseDouble(gemtTid[2]), "Butterfly"));
+                            case 3 -> Hold.holdliste.get(1).tiderBryst.add(new SvømmeTid(gemtTid[0], Double.parseDouble(gemtTid[2]), "Brystsvømning"));
+                        }
+                        ToFile.saveResults(Hold.holdliste.get(0));
+                    }
+                }
+                i++;
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
     public String toString() {
-        return "Holdet "+holdnavn+" for "+type+" i aldersgruppen "+alder;
+        return "Holdet "+holdnavn+" for "+type+" i aldersgruppen "+alder+" med træneren:"+træner;
     }
 }
