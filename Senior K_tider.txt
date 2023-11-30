@@ -1,4 +1,4 @@
+Clara,210.0:Clara,72.0:Clara,860.0,1,Kea
 
 
-
-
+Clara,60.0

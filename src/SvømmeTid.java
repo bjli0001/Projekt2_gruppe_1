@@ -4,18 +4,18 @@ public class SvømmeTid implements Comparable<SvømmeTid> {
 
     private String name;
     private Double tid;
-    private String diciplin;
 
-    public SvømmeTid(String name, Double tid, String diciplin) {
+
+    public SvømmeTid(String name, Double tid) {
         this.name = name;
         this.tid = tid;
-        this.diciplin = diciplin;
     }
 
     @Override
     public String toString() {
-        return name + ", " + tid;
+        return name+","+tid;
     }
+
 
     @Override
     public int compareTo(SvømmeTid o) {
@@ -61,14 +61,14 @@ class KonkurrenceTid extends SvømmeTid{
     int placering;
     String stævneNavn;
 
-    public KonkurrenceTid(String name, Double tid, String diciplin, int placering, String stævneNavn) {
-        super(name, tid, diciplin);
+    public KonkurrenceTid(String name, Double tid, int placering, String stævneNavn) {
+        super(name, tid);
         this.placering=placering;
         this.stævneNavn=stævneNavn;
     }
 
     @Override
     public String toString() {
-        return super.toString()+", "+placering+", "+stævneNavn;
+        return super.toString()+","+placering+","+stævneNavn;
     }
 }
