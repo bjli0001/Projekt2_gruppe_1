@@ -179,7 +179,7 @@ public class Medlem {
 
         String svømmer = null;
         while (true) {
-            System.out.println("Vælg en svømmer, q for at gå tilbage");
+            System.out.println("Vælg en svømmer, tryk q for at gå tilbage");
             svømmer = input.nextLine();
             if (Medlem.navne.contains(svømmer)) {
                 return navne.indexOf(svømmer);
@@ -211,6 +211,7 @@ public class Medlem {
 
             System.out.println();
         }
+
 
     }
 
