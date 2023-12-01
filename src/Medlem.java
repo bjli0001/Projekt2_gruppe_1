@@ -91,7 +91,6 @@ public class Medlem {
         // Opret et medlem
     static void opret() throws ParseException, IOException {
         List<String> stilart = new ArrayList<>();
-        String stilartInput = "";
         cont = true;
         System.out.println("Indtast navn");
         String nameIn = input.nextLine();
