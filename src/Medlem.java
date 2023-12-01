@@ -214,10 +214,6 @@ public class Medlem {
 
     }
 
-    // Se medlemmer på hold
-    static void hold(){
-
-    }
 
     static void registrerBetaling() throws IOException {
 
