@@ -13,7 +13,6 @@ public class Medlem {
     static ArrayList<String> navne = new ArrayList<>();
     String navn;
     Date fødselsdag;
-    // passiv/motion/konkurrence
     String type;
     String alder;
     String hold;
@@ -21,11 +20,6 @@ public class Medlem {
     List<String> discipliner = new ArrayList<>();
     boolean betalt;
     static ArrayList<Integer> restanceIndex = new ArrayList<>();
-
-
-    // Resultat class eller String[]?
-    //ArrayList<> resultater;
-
 
 
 
@@ -128,37 +122,36 @@ public class Medlem {
             }
 
 
-        if (typeIn.equals("Konkurrence")) {
+            if (typeIn.equals("Konkurrence")) {
 
-            System.out.println("Vælg en stilart!");
+                System.out.println("Vælg en stilart!");
 
-                while (nyStilart) {
+                    while (nyStilart) {
 
-                Menu.menu(new String[]{"Fri svømning", "Rygcrawl", "Butterfly", "Brystsvømning", "Færdiggør, gem og luk"});
-
-
-                switch (Menu.op) {
+                    Menu.menu(new String[]{"Fri svømning", "Rygcrawl", "Butterfly", "Brystsvømning", "Færdiggør, gem og luk"});
 
 
-                    case 1 -> stilart.add("Fri svømning");
-                    case 2 -> stilart.add("Rygcrawl");
-                    case 3 -> stilart.add("Butterfly");
-                    case 4 -> stilart.add("Brystsvømning");
-                    case 5 -> nyStilart = false;
+                    switch (Menu.op) {
+
+
+                        case 1 -> stilart.add("Fri svømning");
+                        case 2 -> stilart.add("Rygcrawl");
+                        case 3 -> stilart.add("Butterfly");
+                        case 4 -> stilart.add("Brystsvømning");
+                        case 5 -> nyStilart = false;
+
+                    }
+
 
                 }
-
-
-            }
-        } else
-            stilart.add("Ingen tilknyttet disciplin");
+            } else stilart.add("Ingen tilknyttet disciplin");
 
 
             new Medlem(nameIn, dateIn, typeIn, stilart, "0", false);
 
-
             Hold.tilmeldSvømmehold(medlemmer.size() - 1);
             ToFile.saveList(medlemmer);
+
         }
         else System.out.println("Navn er allerede oprettet");
     }
@@ -214,10 +207,6 @@ public class Medlem {
 
     }
 
-    // Se medlemmer på hold
-    static void hold(){
-
-    }
 
     static void registrerBetaling() throws IOException {
 

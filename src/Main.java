@@ -11,14 +11,13 @@ public class Main {
 
 
         while (true) {
-            Menu.menu(new String[]{"Opret medlem", "Rediger medlem", "Se resultater", "Svømmehold", "Tilføj svømmetid", "Betalinger"});
+            Menu.menu(new String[]{"Opret medlem", "Rediger medlem", "Se resultater", "Tilføj svømmetid", "Betalinger"});
             switch (Menu.op) {
                 case 1 -> Medlem.opret();
                 case 2 -> Medlem.rediger();
                 case 3 -> Hold.resultater();
-                case 4 -> Medlem.hold();
-                case 5 -> Hold.tilføjSvømmeTid();
-                case 6 -> {
+                case 4 -> Hold.tilføjSvømmeTid();
+                case 5 -> {
                     Menu.menu(new String[]{"Registrer betaling", "Se medlemmer med restance"});
 
                     switch (Menu.op) {
