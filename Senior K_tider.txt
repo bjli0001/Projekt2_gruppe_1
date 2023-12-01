@@ -1,4 +1,4 @@
 
-Clara, Rygcrawl, 165.0, 2023/11/25, 3, SvømmeKonkurrencen
-Clara, Butterfly, 120.0,   2023/11/30
-Clara, Brystsvømning, 143.0,  2023/11/29
+
+Clara, Butterfly, 120.0,      2023/11/30
+Clara, Brystsvømning, 143.0,     2023/11/29:Clara, Brystsvømning, 150.0,   2023/04/05

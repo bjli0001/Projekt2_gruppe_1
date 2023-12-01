@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class SvømmeTid implements Comparable<SvømmeTid> {
 
-    private String name;
+    String name;
     private Double tid;
     private String diciplin;
     private String datoForTid;
