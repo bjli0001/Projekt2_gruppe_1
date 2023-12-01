@@ -225,7 +225,58 @@ public class Hold {
             throw new RuntimeException(e);
         }
     }
+    static void resultater(){
+        System.out.println("Resultater for alle hold:");
+        System.out.println("Svømmer, Tid, Placering, Stævne");
+        System.out.println();
 
+        for (int i=0; i<2; i++) {
+            System.out.println(holdliste.get(i));
+            Collections.sort(holdliste.get(i).tiderFri);
+            Collections.sort(holdliste.get(i).tiderRyg);
+            Collections.sort(holdliste.get(i).tiderButterfly);
+            Collections.sort(holdliste.get(i).tiderBryst);
+            System.out.print("Frisvømning tider: ");
+            printTider(holdliste.get(i).tiderFri);
+            System.out.print("Rygcrawl tider: ");
+            printTider(holdliste.get(i).tiderRyg);
+            System.out.print("Butterfly tider: ");
+            printTider(holdliste.get(i).tiderButterfly);
+            System.out.print("Brystsvømning Times: ");
+            printTider(holdliste.get(i).tiderBryst);
+
+            System.out.println();
+        }
+
+    }
+
+    static void printTider(ArrayList<SvømmeTid> tider){
+
+        ArrayList<String> names = new ArrayList<>();
+        boolean cont = true;
+        int i = 0;
+        int j = 0;
+        while (cont){
+            try {
+                if (!names.contains(tider.get(i).name)) {
+                    names.add(tider.get(i).name);
+                    j++;
+                    System.out.print((j) + ".: " + tider.get(i).toPrint());
+                    if (j == 5) {
+                        cont = false;
+                    } else System.out.print("  ");
+                }
+                i++;
+            }
+            catch (Exception e) {
+                cont=false;
+            }
+        }
+        System.out.println();
+
+
+
+    }
     @Override
     public String toString() {
         return "Holdet "+holdnavn+" for "+type+" i aldersgruppen "+alder+" med træneren:"+træner;

@@ -19,6 +19,12 @@ public class SvømmeTid implements Comparable<SvømmeTid> {
         return name + ", " + diciplin + ", " + tid + ", " + datoForTid;
     }
 
+    public String toPrint(){
+        String min = String.valueOf(Math.round(Math.floor(tid/60)));
+        String sek = String.valueOf(tid%60);
+
+        return name+" "+min+":"+sek;
+    }
 
     @Override
     public int compareTo(SvømmeTid o) {
@@ -35,7 +41,7 @@ public class SvømmeTid implements Comparable<SvømmeTid> {
     }
 
 
-    //    public String getName() {
+//    public String getName() {
 //        return name;
 //    }
 //
@@ -51,16 +57,14 @@ public class SvømmeTid implements Comparable<SvømmeTid> {
         this.tid = tid;
     }
 
-}
-
   /*  public String getDiciplin() {
         return diciplin;
     //}
 //
-//    public void setDiciplin(String diciplin) {
-//        this.diciplin = diciplin;
-//    }
-}*/
+    //public void setDiciplin(String diciplin) {
+        this.diciplin = diciplin;
+    } */
+}
 
 class KonkurrenceTid extends SvømmeTid{
     int placering;
@@ -74,6 +78,10 @@ class KonkurrenceTid extends SvømmeTid{
 
     @Override
     public String toString() {
-        return super.toString()+", "+placering+", "+stævneNavn;
+        return super.toString()+","+placering+","+stævneNavn;
+    }
+
+    public String toPrint(){
+        return super.toPrint()+", "+placering+". plads, "+stævneNavn;
     }
 }

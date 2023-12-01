@@ -101,39 +101,38 @@ public class Medlem {
         cont = true;
         System.out.println("Indtast navn");
         String nameIn = input.nextLine();
+        if (!navne.contains(nameIn)) {
+            Date dateIn = null;
+            while (cont) {
+                System.out.println("Indtast fødselsdag (åååå/MM/dd)");
+                String dateStringIn = input.nextLine();
 
-        Date dateIn = null;
-        while (cont) {
-            System.out.println("Indtast fødselsdag (åååå/MM/dd)");
-            String dateStringIn = input.nextLine();
-
-            try {
-                dateIn = sdf.parse(dateStringIn);
-                cont = false;
-            }
-            catch (Exception e){
-                System.out.println("Ugyldig dato");
-            }
+                try {
+                    dateIn = sdf.parse(dateStringIn);
+                    cont = false;
+                } catch (Exception e) {
+                    System.out.println("Ugyldig dato");
+                }
 
         }
 
 
-        System.out.println("Medlemstype");
-        Menu.menu(new String[] {"Konkurrence", "Motion", "Passiv"});
-        String typeIn = null;
-        boolean nyStilart = true;
-        switch (Menu.op){
-            case 1 -> typeIn = "Konkurrence";
-            case 2 -> typeIn = "Motion";
-            case 3 -> typeIn = "Passiv";
-        }
+            System.out.println("Medlemstype");
+            Menu.menu(new String[]{"Konkurrence", "Motion", "Passiv"});
+            String typeIn = null;
+            boolean nyStilart = true;
+            switch (Menu.op) {
+                case 1 -> typeIn = "Konkurrence";
+                case 2 -> typeIn = "Motion";
+                case 3 -> typeIn = "Passiv";
+            }
 
 
         if (typeIn.equals("Konkurrence")) {
 
             System.out.println("Vælg en stilart!");
 
-            while(nyStilart) {
+                while (nyStilart) {
 
                 Menu.menu(new String[]{"Fri svømning", "Rygcrawl", "Butterfly", "Brystsvømning", "Færdiggør, gem og luk"});
 
@@ -155,12 +154,13 @@ public class Medlem {
             stilart.add("Ingen tilknyttet disciplin");
 
 
+            new Medlem(nameIn, dateIn, typeIn, stilart, "0", false);
 
-        new Medlem(nameIn, dateIn, typeIn, stilart, "0", false);
 
-
-        Hold.tilmeldSvømmehold(medlemmer.size()-1);
-        ToFile.saveList(medlemmer);
+            Hold.tilmeldSvømmehold(medlemmer.size() - 1);
+            ToFile.saveList(medlemmer);
+        }
+        else System.out.println("Navn er allerede oprettet");
     }
 
     // Rediger medlems oplysninger
@@ -211,7 +211,6 @@ public class Medlem {
 
             System.out.println();
         }
-
 
     }
 
