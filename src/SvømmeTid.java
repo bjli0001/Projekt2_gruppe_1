@@ -13,11 +13,13 @@ public class SvømmeTid implements Comparable<SvømmeTid> {
         this.diciplin = diciplin;
         this.datoForTid = datoForTid;
     }
+    // Konstruktor for klassen SvømmeTid
 
     @Override
     public String toString() {
         return name + ", " + diciplin + ", " + tid + ", " + datoForTid;
     }
+    //Returnerer en streng, der indeholder navnet på svømmeren (name), svømmedisciplinen (diciplin), svømmetiden i minutter (tid), og datoen for svømmetiden (datoForTid).
 
     public String toPrint(){
         String min = String.valueOf(Math.round(Math.floor(tid/60)));
@@ -44,11 +46,11 @@ public class SvømmeTid implements Comparable<SvømmeTid> {
 
     public Double getTid() {
         return tid;
-    }
+    } //Returnerer værdien af det private felt tid. Det tillader andre klasser at få adgang til værdien uden direkte at manipulere medlemmet.
 
     public void setTid(Double tid) {
         this.tid = tid;
-    }
+    } // Tillader andre klasser at ændre værdien af det private felt tid.
 
 }
 

@@ -31,6 +31,7 @@ public class Medlem {
         this.discipliner=disciplin;
         this.hold=hold;
         this.betalt=betalt;
+        //Konstruktør for medlemsklassen
 
         if (Period.between(fødselsdag.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears()<18){
             alder="Junior";
