@@ -44,6 +44,8 @@ public class Hold {
 
     }
 
+    //Oprretter 4 hold
+
     static void tilføjSvømmeTid() throws IOException {
         double tid;
         String diciplin = null;
@@ -161,6 +163,9 @@ public class Hold {
             else System.out.println("Svømmeren er ikke konkurrence svømmer");
         }
     }
+
+    // Tilføjer svømmetider til de relevante hold baseret på brugerinput og konkurrencesvømmerens information(alder)
+
     public static void tilmeldSvømmehold(int navneIndex) {
         String age=Medlem.medlemmer.get(navneIndex).alder;
         String pro=Medlem.medlemmer.get(navneIndex).type;
@@ -171,9 +176,9 @@ public class Hold {
                 System.out.println("Svømmeren er tilmeldt "+i);
             }
         }
-
-
     }
+
+//Tilmelder en svømmer på hold baseret på alder og type(niveau)
 
     public static void indlæsTider() throws ParseException{
         try (BufferedReader br = new BufferedReader(new FileReader("Senior K_tider.txt"))) {
@@ -225,6 +230,10 @@ public class Hold {
             throw new RuntimeException(e);
         }
     }
+
+    //Indlæser svømmetider fra to forskellige filer ("Senior K_tider.txt" og "Junior K_tider.txt") og organisere dem på de tilsvarende hold i Hold.holdliste
+
+
     static void resultater(){
         System.out.println("Resultater for alle hold:");
         System.out.println("Svømmer, Tid, Placering, Stævne");
@@ -249,6 +258,7 @@ public class Hold {
         }
 
     }
+    //Udskriver resultaterne for alle hold, herunder svømmere, tid, placering og stævneinformation.
 
     static void printTider(ArrayList<SvømmeTid> tider){
 
@@ -274,11 +284,14 @@ public class Hold {
         }
         System.out.println();
 
-
-
     }
+
+    // udskriver top fem svømmertider fra en liste af SvømmeTid-objekter.
+
     @Override
     public String toString() {
         return "Holdet "+holdnavn+" for "+type+" i aldersgruppen "+alder+" med træneren:"+træner;
     }
+
+    // Genererer en tekstrepræsentation af et holdobjekt.
 }

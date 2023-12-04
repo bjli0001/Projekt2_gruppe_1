@@ -15,6 +15,8 @@ public class Menu {
         op = inInt(list.length);
     }
 
+    //Viser en given liste af muligheder og lader brugeren vælge en af dem.
+
     static int inInt(int size) {
 
         boolean OK=false;
@@ -38,4 +40,5 @@ public class Menu {
         } while(!OK);
         return num;
     }
+    //En inputmetode, der bruges til at læse et heltal fra brugeren. Hænger sammen med 'Menu'- metoden
 }

@@ -15,6 +15,7 @@ public class ToFile {
         }
         fil.close();
     }
+    //Denne metode tager en liste af Medlem-objekter som input og gemmer disse medlemmer i en tekstfil ved navn "medlemmer.txt".
 
     public static void saveResults(Hold hold) throws IOException{
         FileWriter fil = new FileWriter(hold.holdnavn+"_tider.txt");
@@ -26,19 +27,5 @@ public class ToFile {
         fil.close();
 
     }
-//    public static void saveCustomer(ArrayList<Customer> dataLines) throws IOException {
-//        FileWriter fil = new FileWriter("customers.txt");
-//        PrintWriter ud = new PrintWriter(fil);
-//
-//        for (Customer k: dataLines) {
-//            ArrayList<String> bookArr = new ArrayList<>();
-//            for (String[] s: k.bookings){
-//
-//                bookArr.add(String.join(".",s));
-//
-//            }
-//            ud.println(k.tlfnr +","+ k.name +","+ String.join(";",bookArr));
-//        }
-//        fil.close();
-//    }
+    // Tager et Hold-objekt som input og gemmer svømmetiderne for dette hold i en tekstfil. Filnavnet dannes ved at tilføje "_tider.txt" til holdnavnet. For hvert disciplin (Fri svømning, Rygcrawl, Butterfly, Brystsvømning)
 }

@@ -25,6 +25,7 @@ public class SvømmeTid implements Comparable<SvømmeTid> {
 
         return name+" "+min+":"+sek;
     }
+    // Konvertere svømmetiden, der er angivet i sekunder, til et mere almindeligt minuts/sekunder-format og returnerer dette format som en streng.
 
     @Override
     public int compareTo(SvømmeTid o) {
@@ -39,16 +40,8 @@ public class SvømmeTid implements Comparable<SvømmeTid> {
         }
 
     }
+    // Sammenligner to svømmetider og returnerer en int-værdi, der angiver deres rækkefølge.
 
-
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public void setName(String name) {
-//        this.name = name;
-//    }
-//
     public Double getTid() {
         return tid;
     }
@@ -57,13 +50,6 @@ public class SvømmeTid implements Comparable<SvømmeTid> {
         this.tid = tid;
     }
 
-  /*  public String getDiciplin() {
-        return diciplin;
-    //}
-//
-    //public void setDiciplin(String diciplin) {
-        this.diciplin = diciplin;
-    } */
 }
 
 class KonkurrenceTid extends SvømmeTid{
@@ -75,6 +61,7 @@ class KonkurrenceTid extends SvømmeTid{
         this.placering=placering;
         this.stævneNavn=stævneNavn;
     }
+    //Kalder på konstruktøren i overstående klasse og tilføjer nogle flere informationer til denne klasse
 
     @Override
     public String toString() {
@@ -84,4 +71,5 @@ class KonkurrenceTid extends SvømmeTid{
     public String toPrint(){
         return super.toPrint()+", "+placering+". plads, "+stævneNavn;
     }
+    // Returnere fællesegenskaber + egenskaber specifikt for KonkurrenceTids klassen
 }
