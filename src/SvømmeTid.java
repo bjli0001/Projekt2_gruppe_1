@@ -17,13 +17,17 @@ public class SvømmeTid implements Comparable<SvømmeTid> {
 
     @Override
     public String toString() {
-        return name + ", " + diciplin + ", " + tid + ", " + datoForTid;
+        return name + "," + diciplin + "," + tid + "," + datoForTid;
     }
     //Returnerer en streng, der indeholder navnet på svømmeren (name), svømmedisciplinen (diciplin), svømmetiden i minutter (tid), og datoen for svømmetiden (datoForTid).
 
     public String toPrint(){
         String min = String.valueOf(Math.round(Math.floor(tid/60)));
-        String sek = String.valueOf(tid%60);
+        String sek;
+        if ((tid%60)<10) {
+            sek = "0"+ (tid%60);
+        }
+        else sek = String.valueOf(tid%60);
 
         return name+" "+min+":"+sek;
     }
