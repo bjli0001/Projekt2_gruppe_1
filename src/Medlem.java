@@ -65,7 +65,6 @@ public class Medlem {
     }
 
 
-    //Dato format
     static SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
     static Scanner input = new Scanner(System.in);
     static boolean cont;
@@ -88,8 +87,8 @@ public class Medlem {
             throw new RuntimeException(e);
         }
     }
+    //Dato format
 
-        // Opret et medlem
     static void opret() throws ParseException, IOException {
         List<String> stilart = new ArrayList<>();
         cont = true;
@@ -155,8 +154,8 @@ public class Medlem {
         }
         else System.out.println("Navn er allerede oprettet");
     }
+    // Opret et medlem
 
-    // Rediger medlems oplysninger
     static void rediger() throws IOException {
         int navneIndex=udvælgSvømmer();
         System.out.println(medlemmer.get(navneIndex));
@@ -167,6 +166,7 @@ public class Medlem {
 
         }
     }
+    // Rediger medlems oplysninger
 
     static int udvælgSvømmer() {
 
@@ -184,6 +184,7 @@ public class Medlem {
         }
 
     }
+    // Tillader brugeren at vælge en svømmer fra en liste over svømmere
 
 
     static void registrerBetaling() throws IOException {
@@ -211,13 +212,12 @@ public class Medlem {
 
                 }
 
-
             }
 
         }
 
-
     }
+    //Registrerer betaling for kontingentet for en bestemt svømmer
 
 
     static void seRestance() {
@@ -230,7 +230,9 @@ public class Medlem {
         }
 
     }
-    static void adminstrerMedlemskab(int navneIndex) throws IOException {   //Ændrer medlemsskabet for svømmeren
+    //Viser en liste over medlemmer, der mangler at betale kontingent
+
+    static void adminstrerMedlemskab(int navneIndex) throws IOException {
         if (medlemmer.get(navneIndex).type.equals("Motion")||medlemmer.get(navneIndex).type.equals("Konkurrence")){
             System.out.println("Dit medlemsskab er lige pt et "+medlemmer.get(navneIndex).type+" vil du ændre det til et Passivt medlemsskab?");
             Menu.menu(new String[]{"Ja","Nej"});
@@ -293,6 +295,7 @@ public class Medlem {
             }
         }
     }
+    // //Ændrer medlemsskabet for svømmeren
 
     @Override
     public String toString() {
@@ -300,3 +303,4 @@ public class Medlem {
         return navn+","+sdf.format(fødselsdag.getTime())+","+type+","+disci+","+hold+","+betalt;
     }
 }
+//Konverterer objektets attributter til en streng, der inkluderer navn, fødselsdag, type, discipliner, hold og betalingsstatus, adskilt af komma.
