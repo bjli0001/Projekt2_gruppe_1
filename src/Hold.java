@@ -9,7 +9,6 @@ import java.util.*;
 
 public class Hold {
     static Scanner input = new Scanner(System.in);
-
     static ArrayList<Hold> holdliste = new ArrayList<>();
     static ArrayList<String> holdNavne = new ArrayList<>();
     protected String holdnavn;
@@ -46,7 +45,7 @@ public class Hold {
 
     //Oprretter 4 hold
 
-    static void tilføjSvømmeTid() throws IOException {
+    static void tilføjSvømmeTid() {
         double tid;
         String diciplin = null;
         String dato = "";
@@ -77,7 +76,10 @@ public class Hold {
                 String svømmeTid = input.nextLine();
                 String[] svømmeTidArr = svømmeTid.split(":");
                 try {
-                    tid = Integer.parseInt(svømmeTidArr[0]) * 60 + Integer.parseInt(svømmeTidArr[1]);
+                    if (svømmeTidArr.length==2) {
+                        tid = Integer.parseInt(svømmeTidArr[0]) * 60 + Integer.parseInt(svømmeTidArr[1]);
+                    }
+                    else tid = Integer.parseInt(svømmeTidArr[0]);
 
                     System.out.println("Vælg diciplin: ");
                     Menu.menu(new String[]{"Fri svømning", "Rygcrawl", "Butterfly", "Brystsvømning"});
