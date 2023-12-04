@@ -113,9 +113,6 @@ public class Hold {
                         String datoForTid = input.nextLine();
 
 
-
-
-
                         if (Period.between(fødselsdag.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears() < 18) {
                             switch (diciplin){
                                 case "Fri svømning" -> Hold.holdliste.get(1).tiderFri.add(new KonkurrenceTid(navn, tid, diciplin, placering, stævneNavn, datoForTid));
@@ -292,7 +289,7 @@ public class Hold {
 
     @Override
     public String toString() {
-        return "Holdet "+holdnavn+" for "+type+" i aldersgruppen "+alder+" med træneren:"+træner;
+        return "Holdet "+holdnavn+" for "+type+" i aldersgruppen "+alder+" med træneren: "+træner;
     }
 
     // Genererer en tekstrepræsentation af et holdobjekt.
