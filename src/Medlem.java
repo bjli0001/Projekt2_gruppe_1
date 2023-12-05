@@ -54,7 +54,6 @@ public class Medlem {
 
         }
 
-        System.out.println(sdf.format(fødselsdag.getTime())+"  "+Period.between(fødselsdag.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears()+"  "+beløb);
         medlemmer.add(this);
         navne.add(navn);
 

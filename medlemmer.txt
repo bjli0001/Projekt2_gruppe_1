@@ -1,16 +1,16 @@
-Clara,2003/03/10,Konkurrence,Fri svømning,Senior K,true
-Lars,2187/10/22,Konkurrence,Rygcrawl,Junior K,false
-Lars<3,0013/02/07,Konkurrence,Fri svømning;Rygcrawl,Senior K,true
-Yusuf,1995/07/31,Konkurrence,Brystsvømning;Fri svømning;Rygcrawl;Butterfly,Senior K,false
-Lasse,0128/05/12,Konkurrence,,Senior K,true
-Mike Oxmall,2007/10/10,Konkurrence,Rygcrawl,Junior K,false
-Julie Lampeskærm,1978/11/10,Konkurrence,Butterfly,Senior K,true
+Clara,2003/03/10,Konkurrence,Fri svømning,Konkurrence Sr.,true
+Lars,2187/10/22,Konkurrence,Rygcrawl,Konkurrence Jr.,false
+Lars<3,0013/02/07,Konkurrence,Fri svømning;Rygcrawl,Konkurrence Sr.,true
+Yusuf,1995/07/31,Konkurrence,Brystsvømning;Fri svømning;Rygcrawl;Butterfly,Konkurrence Sr.,false
+Lasse,0128/05/12,Konkurrence,,Konkurrence Sr.,true
+Mike Oxmall,2007/10/10,Konkurrence,Rygcrawl,Konkurrence Jr.,false
+Julie Lampeskærm,1978/11/10,Konkurrence,Butterfly,Konkurrence Sr.,true
 Gitte,1999/03/12,Passiv,Ingen tilknyttet disciplin,0,false
-lars,1980/12/20,Konkurrence,Rygcrawl;Rygcrawl,Senior K,false
-Pele,1940/12/24,Konkurrence,Brystsvømning;Fri svømning,Senior K,false
-Mark,1997/10/09,Motion,Ingen tilknyttet disciplin,Hyggeholdet S,false
-John,1995/02/24,Konkurrence,Fri svømning,Senior K,false
-Test,1995/04/23,Konkurrence,Fri svømning;Rygcrawl;Butterfly,Senior K,false
-Test_1,1994/12/12,Konkurrence,Fri svømning,Senior K,false
-Test_2,1994/12/13,Konkurrence,Fri svømning,Senior K,false
-Test_3,1994/12/13,Konkurrence,Fri svømning,Senior K,false
+lars,1980/12/20,Konkurrence,Rygcrawl;Rygcrawl,Konkurrence Sr.,false
+Pele,1940/12/24,Konkurrence,Brystsvømning;Fri svømning,Konkurrence Sr.,false
+Mark,1997/10/09,Motion,Ingen tilknyttet disciplin,Hyggeholdet Sr.,false
+John,1995/02/24,Konkurrence,Fri svømning,Konkurrence Sr.,false
+Test,1995/04/23,Konkurrence,Fri svømning;Rygcrawl;Butterfly,Konkurrence Sr.,false
+Test_1,1994/12/12,Konkurrence,Fri svømning,Konkurrence Sr.,false
+Test_2,1994/12/13,Konkurrence,Fri svømning,Konkurrence Sr.,false
+Test_3,1994/12/13,Konkurrence,Fri svømning,Konkurrence Sr.,false
