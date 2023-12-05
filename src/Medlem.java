@@ -33,6 +33,7 @@ public class Medlem {
         this.betalt=betalt;
         //Konstruktør for medlemsklassen
 
+
         if (Period.between(fødselsdag.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears()<18){
             alder="Junior";
             beløb = 1000;
@@ -41,7 +42,7 @@ public class Medlem {
             beløb = 1600;
         }
 
-        if (Period.between(fødselsdag.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears()<=60) {
+        if (Period.between(fødselsdag.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears()>=60) {
 
             beløb = 1200;
         }
@@ -53,7 +54,7 @@ public class Medlem {
 
         }
 
-
+        System.out.println(sdf.format(fødselsdag.getTime())+"  "+Period.between(fødselsdag.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(), LocalDate.now()).getYears()+"  "+beløb);
         medlemmer.add(this);
         navne.add(navn);
 
@@ -225,7 +226,7 @@ public class Medlem {
         System.out.println("Følgende medlemmer mangler at betale kontingent:");
 
         for (Integer m : restanceIndex) {
-            System.out.println(medlemmer.get(m).navn+" "+sdf.format(medlemmer.get(m).fødselsdag.getTime())+" "+medlemmer.get(m).type);
+            System.out.println(medlemmer.get(m).navn+" "+sdf.format(medlemmer.get(m).fødselsdag.getTime())+" "+medlemmer.get(m).type+", "+medlemmer.get(m).beløb+" kr.");
 
         }
 
