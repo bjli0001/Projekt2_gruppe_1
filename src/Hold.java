@@ -36,10 +36,10 @@ public class Hold {
 
     public static void opretHold() {
 
-        new Hold("Senior K", "Konkurrence", "Senior","Træner Mike Oxlong");
-        new Hold("Junior K", "Konkurrence", "Junior", "Træner Mette Polka");
-        new Hold("Hyggeholdet S", "Motion", "Senior","Ingen træner");
-        new Hold("Hyggeholdet J", "Motion", "Junior","Ingen træner");
+        new Hold("Konkurrence Sr.", "Konkurrence", "Senior","Træner Mike Oxlong");
+        new Hold("Konkurrence Jr.", "Konkurrence", "Junior", "Træner Mette Polka");
+        new Hold("Hyggeholdet Sr.", "Motion", "Senior","Ingen træner");
+        new Hold("Hyggeholdet Jr.", "Motion", "Junior","Ingen træner");
 
     }
 
@@ -87,12 +87,10 @@ public class Hold {
 
                     switch (Menu.op) {
 
-
                         case 1 -> diciplin = "Fri svømning";
                         case 2 -> diciplin = "Rygcrawl";
                         case 3 -> diciplin = "Butterfly";
                         case 4 -> diciplin = "Brystsvømning";
-
 
                     }
 
@@ -169,7 +167,7 @@ public class Hold {
         String age=Medlem.medlemmer.get(navneIndex).alder;
         String pro=Medlem.medlemmer.get(navneIndex).type;
         for (Hold i: holdliste){
-            if (i.alder.equals(age)&&i.type.equals(pro)){
+            if (i.alder.equals(age) && i.type.equals(pro)){
                 i.svoemmer.add(Medlem.medlemmer.get(navneIndex));
                 Medlem.medlemmer.get(navneIndex).hold=i.holdnavn;
                 System.out.println("Svømmeren er tilmeldt "+i);
