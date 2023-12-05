@@ -178,7 +178,7 @@ public class Hold {
 //Tilmelder en svømmer på hold baseret på alder og type(niveau)
 
     public static void indlæsTider() throws ParseException{
-        try (BufferedReader br = new BufferedReader(new FileReader("Senior K_tider.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("Konkurrence Sr._tider.txt"))) {
             String line;
             int i = 0;
             String[] gemtTid;
@@ -202,7 +202,7 @@ public class Hold {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        try (BufferedReader br = new BufferedReader(new FileReader("Junior K_tider.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("Konkurrence Jr._tider.txt"))) {
             String line;
             int i = 0;
             String[] gemtTid;
@@ -228,7 +228,7 @@ public class Hold {
         }
     }
 
-    //Indlæser svømmetider fra to forskellige filer ("Senior K_tider.txt" og "Junior K_tider.txt") og organisere dem på de tilsvarende hold i Hold.holdliste
+    //Indlæser svømmetider fra to forskellige filer ("Senior K_tider.txt" og "Konkurrence Jr._tider.txt") og organisere dem på de tilsvarende hold i Hold.holdliste
 
 
     static void resultater(){
