@@ -1,4 +1,0 @@
-Julie Lampeskærm,Fri svømning,1.0,2019/10/12:Clara,Fri svømning,74.0,2023/11/12:Yusuf,Fri svømning,121.0,2022/10/21:Clara,Fri svømning,600.0,2022/01/12:Pele,Fri svømning,720.0,2022/10/01:Test,Fri svømning,150.0,2023/01/21:Clara,Fri svømning,17.0,2021/20/11
-Clara,Rygcrawl,14.0,1001/01/10
-Clara,Butterfly,60.0,2023/10/11:Clara,Butterfly,120.0,2023/11/30
-Clara,Brystsvømning,143.0,2023/11/29:Clara,Brystsvømning,150.0,2023/04/05
