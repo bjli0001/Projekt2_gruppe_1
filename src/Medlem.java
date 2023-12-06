@@ -170,7 +170,7 @@ public class Medlem {
 
         String svømmer = null;
         while (true) {
-            System.out.println("Vælg en svømmer, tryk q for at gå tilbage");
+            System.out.println("Skriv medlemmets navn, tryk q for at gå tilbage");
             svømmer = input.nextLine();
             if (Medlem.navne.contains(svømmer)) {
                 return navne.indexOf(svømmer);
@@ -232,7 +232,7 @@ public class Medlem {
 
     static void adminstrerMedlemskab(int navneIndex) throws IOException {
         if (medlemmer.get(navneIndex).type.equals("Motion")||medlemmer.get(navneIndex).type.equals("Konkurrence")){
-            System.out.println("Dit medlemsskab er lige pt et "+medlemmer.get(navneIndex).type+" vil du ændre det til et Passivt medlemsskab?");
+            System.out.println(medlemmer.get(navneIndex).navn+"s medlemskab er lige pt et "+medlemmer.get(navneIndex).type+"medlemskab vil du ændre det til et Passivt medlemskab?");
             Menu.menu(new String[]{"Ja","Nej"});
 
             switch (Menu.op) {
@@ -247,12 +247,12 @@ public class Medlem {
             }
         }
         else {
-            System.out.println("Dit medlemsskab er lige pt et "+medlemmer.get(navneIndex).type+" vil du ændre det til et aktivt medlemsskab?");
+            System.out.println(medlemmer.get(navneIndex).navn+"s medlemskab er lige pt et "+medlemmer.get(navneIndex).type+"t medlemskab vil du ændre det til et aktivt medlemskab?");
             Menu.menu(new String[]{"Ja","Nej"});
 
             switch (Menu.op){
                 case 1 -> {
-                    System.out.println("Fedt! Er du konkurrence svømmer eller motions svømmer?");
+                    System.out.println("Fedt! Er du konkurrencesvømmer eller motionssvømmer?");
                     Menu.menu (new String[]{"Konkurrence","Motion"});
                     switch(Menu.op){
                         case 1-> {
@@ -293,7 +293,7 @@ public class Medlem {
             }
         }
     }
-    // //Ændrer medlemsskabet for svømmeren
+    // //Ændrer medlemskabet for svømmeren
 
     @Override
     public String toString() {
