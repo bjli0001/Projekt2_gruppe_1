@@ -257,7 +257,7 @@ public class Medlem {
                     switch(Menu.op){
                         case 1-> {
                             medlemmer.get(navneIndex).type = "Konkurrence";
-                            System.out.println("Vælg en stilart!");
+                            System.out.println("Vælg en eller flere stilarter:");
                             List<String> stilart = new ArrayList<>();
                             boolean nyStilart = true;
 
