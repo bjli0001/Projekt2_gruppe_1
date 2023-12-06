@@ -40,5 +40,6 @@ public class Menu {
         } while(!OK);
         return num;
     }
+
     //En inputmetode, der bruges til at læse et heltal fra brugeren. Hænger sammen med 'Menu'- metoden
 }

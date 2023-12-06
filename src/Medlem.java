@@ -159,10 +159,9 @@ public class Medlem {
     static void rediger() throws IOException {
         int navneIndex=udvælgSvømmer();
         System.out.println(medlemmer.get(navneIndex).toPrint());
-        Menu.menu(new String[]{"Adminstrer medlemskab","Tilføj ny bedste tid", "Tilbage til hovedmenu"});
+        Menu.menu(new String[]{"Adminstrer medlemskab", "Tilbage til hovedmenu"});
         switch (Menu.op){
             case 1 -> Medlem.adminstrerMedlemskab(navneIndex);
-            case 2 -> Hold.tilmeldSvømmehold(navneIndex);
         }
     }
     // Rediger medlems oplysninger
@@ -301,9 +300,13 @@ public class Medlem {
         String disci = String.join(";",discipliner);
         return navn+","+sdf.format(fødselsdag.getTime())+","+type+","+disci+","+hold+","+betalt;
     }
+    //Konverterer objektets attributter til en streng, der inkluderer navn, fødselsdag, type, discipliner, hold og betalingsstatus, adskilt af komma.
+
+
     public String toPrint() {
         String disci = String.join(", ",discipliner);
         return navn+", "+sdf.format(fødselsdag.getTime())+", "+type+", "+hold+", discipliner: "+disci;
     }
+    //Konverterer objektet til en printvenlig streng.
 }
-//Konverterer objektets attributter til en streng, der inkluderer navn, fødselsdag, type, discipliner, hold og betalingsstatus, adskilt af komma.
+
