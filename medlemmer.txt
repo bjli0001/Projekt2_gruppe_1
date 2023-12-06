@@ -14,3 +14,5 @@ Test,1995/04/23,Konkurrence,Fri svømning;Rygcrawl;Butterfly,Konkurrence Sr.,fal
 Test_1,1994/12/12,Konkurrence,Fri svømning,Konkurrence Sr.,false
 Test_2,1994/12/13,Konkurrence,Fri svømning,Konkurrence Sr.,false
 Test_3,1994/12/13,Konkurrence,Fri svømning,Konkurrence Sr.,false
+Johnny,2021/01/01,Motion,Ingen tilknyttet disciplin,Hyggeholdet Jr.,false
+Bjarke,1996/07/27,Konkurrence,Brystsvømning,Konkurrence Sr.,false

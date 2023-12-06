@@ -74,7 +74,7 @@ public class Medlem {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
-                List<String> disci = Arrays.asList(values[3].split(","));
+                List<String> disci = Arrays.asList(values[3].split(";"));
                 new Medlem(values[0], sdf.parse(values[1]), values[2], disci, values[4], Boolean.parseBoolean(values[5]));
 
                 if (!values[4].equals("0")){
@@ -123,7 +123,7 @@ public class Medlem {
 
             if (typeIn.equals("Konkurrence")) {
 
-                System.out.println("Vælg en stilart!");
+                System.out.println("Vælg en eller flere stilarter:");
 
                     while (nyStilart) {
 
@@ -158,12 +158,11 @@ public class Medlem {
 
     static void rediger() throws IOException {
         int navneIndex=udvælgSvømmer();
-        System.out.println(medlemmer.get(navneIndex));
-        Menu.menu(new String[]{"Adminstrer medlemskab","Tilmeld svømmehold","Frameld Svømmehold","Tilføj ny bedste tid"});
+        System.out.println(medlemmer.get(navneIndex).toPrint());
+        Menu.menu(new String[]{"Adminstrer medlemskab","Tilføj ny bedste tid", "Tilbage til hovedmenu"});
         switch (Menu.op){
             case 1 -> Medlem.adminstrerMedlemskab(navneIndex);
             case 2 -> Hold.tilmeldSvømmehold(navneIndex);
-
         }
     }
     // Rediger medlems oplysninger
@@ -301,6 +300,10 @@ public class Medlem {
     public String toString() {
         String disci = String.join(";",discipliner);
         return navn+","+sdf.format(fødselsdag.getTime())+","+type+","+disci+","+hold+","+betalt;
+    }
+    public String toPrint() {
+        String disci = String.join(", ",discipliner);
+        return navn+", "+sdf.format(fødselsdag.getTime())+", "+type+", "+hold+", discipliner: "+disci;
     }
 }
 //Konverterer objektets attributter til en streng, der inkluderer navn, fødselsdag, type, discipliner, hold og betalingsstatus, adskilt af komma.
